@@ -6,7 +6,6 @@ class TypeForm extends Component {
   render() {
     return (
       <div className='type-form'>
-        <p> Hello World </p>
       </div>
     )
   } 
