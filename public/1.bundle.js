@@ -132,8 +132,24 @@ webpackJsonp([1],{
 	  }, {
 	    key: 'handleChange',
 	    value: function handleChange(event) {
-	      debugger;
-	      this.props.handleChange(event.target.value);
+	      var value = event.target.value;
+	      switch (event.target.id) {
+	        case 'age':
+	          this.props.handleAge(value);
+	          break;
+	        case 'education':
+	          this.props.handleEducation(value);
+	          break;
+	        case 'first-lang':
+	          this.props.handleFirstLang(value);
+	          break;
+	        case 'second-lang':
+	          this.props.handleSecondLang(value);
+	          break;
+	        case 'experience':
+	          this.props.handleExperience(value);
+	          break;
+	      }
 	    }
 	  }, {
 	    key: 'checkEnter',
@@ -165,6 +181,7 @@ webpackJsonp([1],{
 	            'How old are you?'
 	          ),
 	          _react2.default.createElement('input', {
+	            id: 'age',
 	            type: 'number',
 	            onChange: this.handleChange,
 	            onBlur: this.handleChange,
@@ -176,8 +193,9 @@ webpackJsonp([1],{
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            {
-	              className: 'crs-select' },
+	            { id: 'education',
+	              className: 'crs-select',
+	              onChange: this.handleChange },
 	            this.state.schooling.map(createSchoolList)
 	          ),
 	          _react2.default.createElement(
@@ -187,7 +205,7 @@ webpackJsonp([1],{
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { className: 'crs-select' },
+	            { id: 'first-lang', className: 'crs-select', onChange: this.handleChange },
 	            _react2.default.createElement(
 	              'option',
 	              { className: 'crs-option', value: 'language-benchmark' },
@@ -231,7 +249,7 @@ webpackJsonp([1],{
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { className: 'crs-select' },
+	            { id: 'second-lang', className: 'crs-select', onChange: this.handleChange },
 	            _react2.default.createElement(
 	              'option',
 	              { className: 'crs-option', value: 'second-language-benchmark' },
@@ -260,7 +278,7 @@ webpackJsonp([1],{
 	          ),
 	          _react2.default.createElement(
 	            'select',
-	            { className: 'crs-select' },
+	            { id: 'experience', className: 'crs-select', onChange: this.handleChange },
 	            _react2.default.createElement(
 	              'option',
 	              { className: 'crs-option', value: 'work-experience' },
