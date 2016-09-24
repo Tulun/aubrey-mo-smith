@@ -17,6 +17,8 @@ const baseTemplate = fs.readFileSync('./index.html')
 const template = _.template(baseTemplate)
 const ClientApp = require('./src/components/clientApp.jsx')
 const Routes = ClientApp.Routes
+const $ = require("jquery")
+
 
 const app = express()
 
