@@ -246,6 +246,10 @@ webpackJsonp([1],{
 
 	var _c2 = _interopRequireDefault(_c);
 
+	var _d = __webpack_require__(384);
+
+	var _d2 = _interopRequireDefault(_d);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var _require = __webpack_require__(354);
@@ -287,11 +291,23 @@ webpackJsonp([1],{
 	var DonutChart = _react2.default.createClass({
 	    displayName: 'DonutChart',
 
-	    renderChart: function renderChart(data) {
+	    renderChart: function renderChart() {
 	        var chart = _c2.default.generate({
-	            bindto: '#chart',
 	            data: {
-	                columns: [['data1', 30, 200, 100, 400, 150, 250], ['data2', 50, 20, 10, 40, 15, 25]]
+	                columns: [['data1', 30], ['data2', 120]],
+	                type: 'donut',
+	                onclick: function onclick(d, i) {
+	                    console.log("onclick", d, i);
+	                },
+	                onmouseover: function onmouseover(d, i) {
+	                    console.log("onmouseover", d, i);
+	                },
+	                onmouseout: function onmouseout(d, i) {
+	                    console.log("onmouseout", d, i);
+	                }
+	            },
+	            donut: {
+	                title: "Iris Petal Width"
 	            }
 	        });
 	    },
