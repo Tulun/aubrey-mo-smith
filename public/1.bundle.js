@@ -102,6 +102,7 @@ webpackJsonp([1],{
 	      age: 0,
 	      school: ''
 	    };
+	    _this.handleChange = _this.handleChange.bind(_this);
 	    return _this;
 	  }
 
@@ -130,12 +131,9 @@ webpackJsonp([1],{
 	    }
 	  }, {
 	    key: 'handleChange',
-	    value: function handleChange(name, event) {
-	      console.log(name);
-	      var nextState = {};
-	      nextState[name] = event.target.value;
-	      this.setState({ age: event.target.value });
-	      console.log(this.state.age);
+	    value: function handleChange(event) {
+	      debugger;
+	      this.props.handleChange(event.target.value);
 	    }
 	  }, {
 	    key: 'checkEnter',
@@ -168,9 +166,8 @@ webpackJsonp([1],{
 	          ),
 	          _react2.default.createElement('input', {
 	            type: 'number',
-	            value: this.state.age,
-	            onChange: this.handleChange.bind(this, 'age'),
-	            onBlur: this.handleChange.bind(this, 'age'),
+	            onChange: this.handleChange,
+	            onBlur: this.handleChange,
 	            onKeyPress: this.checkEnter.bind(this, 'age') }),
 	          _react2.default.createElement(
 	            'p',

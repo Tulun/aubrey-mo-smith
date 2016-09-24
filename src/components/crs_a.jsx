@@ -1,13 +1,13 @@
 // This component is for Core / Human capital factors of the calculator. 
 // Note: The maximum # of points for this (A) and spousal (B) is 500 points.
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 const {connector} = require('../reducers/store')
 
 class CrsA extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       schooling: [
@@ -25,35 +25,33 @@ class CrsA extends Component {
       ],
       age: 0,
       school: '',
-    };
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crsaform);
+    const node = ReactDOM.findDOMNode(this.refs.crsaform)
 
-    const addEvent = node.addEventListener || node.attachEvent;
+    const addEvent = node.addEventListener || node.attachEvent
 
-    addEvent('keypress', this.handleKeyPress.bind(this), false);
+    addEvent('keypress', this.handleKeyPress.bind(this), false)
   }
 
   componentWillUnmount() {
-    const removeEvent = node.removeEventListener || node.detachEvent;
+    const removeEvent = node.removeEventListener || node.detachEvent
 
-    removeEvent('keypress', this.handleKeyPress.bind(this));
+    removeEvent('keypress', this.handleKeyPress.bind(this))
   }
 
   handleKeyPress(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
+      event.preventDefault()
     }
   }
 
-  handleChange(name, event) {
-    console.log(name);
-    var nextState = {};
-    nextState[name] = event.target.value;
-    this.setState({ age: event.target.value });
-    console.log(this.state.age);
+  handleChange(event) {
+    debugger;
+    this.props.handleChange(event.target.value)
   }
 
   checkEnter(event) {
@@ -61,7 +59,6 @@ class CrsA extends Component {
       this.handleChange(event);
     }
   }
-
   render() {
     var createSchoolList = (item, key) => {
       return <option className='crs-option' key={key} value={item.value}>{item.name}</option>
@@ -75,9 +72,8 @@ class CrsA extends Component {
           <p className='crs-a-question'>How old are you?</p>
           <input
            type='number'
-           value={this.state.age}
-           onChange={this.handleChange.bind(this,'age')}
-           onBlur={this.handleChange.bind(this, 'age')}
+           onChange={this.handleChange}
+           onBlur={this.handleChange}
            onKeyPress={this.checkEnter.bind(this, 'age')} />
            <p className='crs-a-question'>What's your level of education?</p>
            <select 
