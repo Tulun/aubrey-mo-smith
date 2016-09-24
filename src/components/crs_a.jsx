@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
+const {connector} = require('../reducers/store')
 
 class CrsA extends Component {
   constructor(props) {
@@ -125,4 +125,4 @@ class CrsA extends Component {
   }
 }
 
-export default connect()(CrsA);
+module.exports = connector(CrsA)
