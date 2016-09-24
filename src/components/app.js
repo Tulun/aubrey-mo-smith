@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import TypeForm from './typeform';
+import CrsA from './crs_a';
 
 export default class App extends Component {
   render() {
     return (
-      <TypeForm />
+      <CrsA />
     );
   }
 }
