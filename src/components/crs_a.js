@@ -12,16 +12,16 @@ class CrsA extends Component {
     this.state = {
       schooling: [
         {value: null, name: 'Select...'},
-        {value: 'crs-1', name: 'Less than secondary'}, 
-        {value: 'crs-2', name: 'Secondary diploma'},
-        {value: 'crs-3', name: 'One-year degree, diploma or certificate from a university, college,' +
+        {value: 'crs-school-1', name: 'Less than secondary'}, 
+        {value: 'crs-school-2', name: 'Secondary diploma'},
+        {value: 'crs-school-3', name: 'One-year degree, diploma or certificate from a university, college,' +
         'trade or technical school, or other institute'},
-        {value: 'crs-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute'}, 
-        {value: 'crs-5', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
-        {value: 'crs-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
-        {value: 'crs-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
-        {value: 'crs-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession (For professional degree, the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)"},
-        {value: 'crs-9', name: 'Doctoral level university degree (Ph.D.)'}
+        {value: 'crs-school-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute'}, 
+        {value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
+        {value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
+        {value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
+        {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession (For professional degree, the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)"},
+        {value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)'}
       ],
       age: 0,
       school: '',
@@ -48,7 +48,11 @@ class CrsA extends Component {
     }
   }
 
-  handleChange(event) {
+  handleChange(name, event) {
+    console.log(name);
+    var nextState = {};
+    nextState[name] = event.target.value;
+    console.log(nextState);
     this.setState({ age: event.target.value });
     console.log(this.state.age);
   }
@@ -63,6 +67,9 @@ class CrsA extends Component {
     var createSchoolList = (item, key) => {
       return <option className='crs-option' key={key} value={item.value}>{item.name}</option>
     }
+    var createFirstLanguage = (item, key) => {
+
+    }
     return (
       <div className='crs-a'>
         <form ref='crsaform' className='crs-a-form'>
@@ -70,11 +77,13 @@ class CrsA extends Component {
           <input
            type='number'
            value={this.state.age}
-           onChange={this.handleChange.bind(this)}
-           onBlur={this.handleChange.bind(this)}
-           onKeyPress={this.checkEnter.bind(this)} />
+           onChange={this.handleChange.bind(this,'age')}
+           onBlur={this.handleChange.bind(this, 'age')}
+           onKeyPress={this.checkEnter.bind(this, 'age')} />
            <p className='crs-a-question'>What's your level of education?</p>
-           <select className='crs-select' value={this.state.school} >
+           <select 
+            className='crs-select' 
+            value={this.props.school} >
             {this.state.schooling.map(createSchoolList)}
            </select>
            <p className='crs-a-question'>What's your first official language profiency?</p>
