@@ -52,7 +52,6 @@ class CrsA extends Component {
     console.log(name);
     var nextState = {};
     nextState[name] = event.target.value;
-    console.log(nextState);
     this.setState({ age: event.target.value });
     console.log(this.state.age);
   }
@@ -82,8 +81,7 @@ class CrsA extends Component {
            onKeyPress={this.checkEnter.bind(this, 'age')} />
            <p className='crs-a-question'>What's your level of education?</p>
            <select 
-            className='crs-select' 
-            value={this.props.school} >
+            className='crs-select'>
             {this.state.schooling.map(createSchoolList)}
            </select>
            <p className='crs-a-question'>What's your first official language profiency?</p>
