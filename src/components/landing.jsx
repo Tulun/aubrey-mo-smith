@@ -8,10 +8,8 @@ const DonutChart = require('./donut_chart')
 class Landing extends React.Component {
   render () {
     return (
-      <div>
+      <div className='flex-boxing'>
         <h1 className='title'>Hello World</h1>
-        <CrsA />
-        <DonutChart />
       </div>
     )
   }

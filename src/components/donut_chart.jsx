@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import jQuery from 'jQuery';
 import c3 from 'c3';
-import d3 from 'd3';
 
 const {connector} = require('../reducers/store')
 
