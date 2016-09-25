@@ -25,7 +25,7 @@ const myRoutes = {
       path: 'dashboard',
       getComponent(location, cb) {
         require.ensure([], () => {
-        cb(null, require('./dashboard'))
+          cb(null, require('./dashboard'))
         })
       }
     },
@@ -33,7 +33,7 @@ const myRoutes = {
       path: 'crs/a',
       getComponent(location, cb) {
         require.ensure([], () => {
-        cb(null, require('./crs_a'))
+          cb(null, require('./crs_a'))
         })
       }
     },
@@ -41,7 +41,7 @@ const myRoutes = {
       path: 'crs/b',
       getComponent(location, cb) {
         require.ensure([], () => {
-        cb(null, require('./crs_b'))
+          cb(null, require('./crs_b'))
         })
       }
     },
@@ -49,7 +49,7 @@ const myRoutes = {
       path: 'crs/c',
       getComponent(location, cb) {
         require.ensure([], () => {
-        cb(null, require('./crs_c'))
+          cb(null, require('./crs_c'))
         })
       }
     },
@@ -57,7 +57,7 @@ const myRoutes = {
       path: 'crs/d',
       getComponent(location, cb) {
         require.ensure([], () => {
-        cb(null, require('./crs_d'))
+          cb(null, require('./crs_d'))
         })
       }
     }

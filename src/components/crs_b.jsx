@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom'
 const DonutChart = require('./donut_chart')
 const {connector} = require('../reducers/store')
 
-class CrsA extends Component {
+class CrsB extends Component {
   constructor(props) {
     super(props)
 
@@ -98,4 +98,4 @@ class CrsA extends Component {
   }
 }
 
-module.exports = connector(CrsA)
+module.exports = connector(CrsB)

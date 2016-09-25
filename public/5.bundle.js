@@ -2206,13 +2206,13 @@ webpackJsonp([5],{
 
 	var connector = _require.connector;
 
-	var CrsA = function (_Component) {
-	  _inherits(CrsA, _Component);
+	var CrsB = function (_Component) {
+	  _inherits(CrsB, _Component);
 
-	  function CrsA(props) {
-	    _classCallCheck(this, CrsA);
+	  function CrsB(props) {
+	    _classCallCheck(this, CrsB);
 
-	    var _this = _possibleConstructorReturn(this, (CrsA.__proto__ || Object.getPrototypeOf(CrsA)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CrsB.__proto__ || Object.getPrototypeOf(CrsB)).call(this, props));
 
 	    _this.state = {
 	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
@@ -2223,7 +2223,7 @@ webpackJsonp([5],{
 	    return _this;
 	  }
 
-	  _createClass(CrsA, [{
+	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
@@ -2315,10 +2315,10 @@ webpackJsonp([5],{
 	    }
 	  }]);
 
-	  return CrsA;
+	  return CrsB;
 	}(_react.Component);
 
-	module.exports = connector(CrsA);
+	module.exports = connector(CrsB);
 
 /***/ }
 
