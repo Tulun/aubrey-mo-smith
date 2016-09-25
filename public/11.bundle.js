@@ -17,10 +17,6 @@ webpackJsonp([11],{
 
 	var _c2 = _interopRequireDefault(_c);
 
-	var _d = __webpack_require__(384);
-
-	var _d2 = _interopRequireDefault(_d);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var _require = __webpack_require__(354);
@@ -60,12 +56,18 @@ webpackJsonp([11],{
 	      }
 	    });
 	  },
+
+	  // These two are to replace the renderChart in render to address a bug.
 	  componentDidMount: function componentDidMount() {
 	    this.renderChart();
 	  },
-	  render: function render() {
+
+	  componentDidUpdate: function componentDidUpdate() {
 	    this.renderChart();
-	    return _react2.default.createElement('div', { className: 'row', id: 'chart' });
+	  },
+
+	  render: function render() {
+	    return _react2.default.createElement('div', { id: 'chart' });
 	  }
 	});
 

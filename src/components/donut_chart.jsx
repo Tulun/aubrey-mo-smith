@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import jQuery from 'jQuery';
 import c3 from 'c3';
-import d3 from 'd3';
 
 const {connector} = require('../reducers/store')
 
@@ -38,14 +37,20 @@ var DonutChart = React.createClass({
       }
     });
   },
+
+  // These two are to replace the renderChart in render to address a bug.
   componentDidMount: function () {
-      this.renderChart();
+    this.renderChart();
   },
+
+  componentDidUpdate: function () {
+    this.renderChart();
+  },
+
   render: function () {
-      this.renderChart();
-      return (
-          <div className="row" id="chart"></div>
-      )
+    return (
+      <div id="chart"></div>
+    )
   }
 });
 
