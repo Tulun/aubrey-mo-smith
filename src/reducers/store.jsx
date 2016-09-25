@@ -15,7 +15,8 @@ const HANDLE_SPOUSE_FIRST_LANG = 'handleSpouseFirstLang'
 const initialState = {
   status: '',
   age: 0,
-  ageScore: 0
+  ageScore: 0,
+  educationScore: 0
 }
 
 const calculateAgeScore = (state, value) => {
@@ -41,6 +42,32 @@ const calculateAgeScore = (state, value) => {
   return ageScore
 }
 
+const calculateEducationScore = (state, value) => {
+  let educationCriteria, educationScore
+  if (state.status) {
+    educationCriteria = data.educationCriteria.single
+  } else { 
+    educationCriteria = data.educationCriteria.married
+  }
+  educationScore = educationCriteria[value]
+  if (!educationScore) {
+    educationScore = 0
+  }
+  return educationScore
+}
+
+const calculateFirstLangScore = (state, value) => {
+  debugger
+}
+
+const calculateSecondLangScore = (state, value) => {
+  debugger
+}
+
+const calculateExperienceLangScore = (state, value) => {
+  debugger
+}
+
 const rootReducer = (state = initialState, action) => {
   
   switch (action.type) {
@@ -48,13 +75,17 @@ const rootReducer = (state = initialState, action) => {
       const ageScore = calculateAgeScore(state, action.value)
       return reduceChange(state, action, {age: action.value, ageScore: ageScore})
     case HANDLE_EDUCATION:
-      return reduceChange(state, action, {education: action.value})
+      const educationScore = calculateEducationScore(state, action.value)
+      return reduceChange(state, action, {education: action.value, educationScore: educationScore})
     case HANDLE_FIRST_LANG:
-      return reduceChange(state, action, {firstLang: action.value})
+      const firstLangScore = calculateFirstLangScore(state, action.value)
+      return reduceChange(state, action, {firstLang: action.value, firstLangScore: firstLangScore})
     case HANDLE_SECOND_LANG:
-      return reduceChange(state, action, {secondLang: action.value})
+      const secondLangScore = calculateSecondLangScore(state, action.value)
+      return reduceChange(state, action, {secondLang: action.value, secondLangScore: secondLangScore})
     case HANDLE_EXPERIENCE:
-      return reduceChange(state, action, {experience: action.value})
+      const experienceScore = calculateExperienceLangScore(state, action.value)
+      return reduceChange(state, action, {experience: action.value, experienceScore: experienceScore})
     case HANDLE_MARITAL_STATUS:
       return reduceChange(state, action, {married: action.value})
     case HANDLE_SPOUSE_EDUCATION:
@@ -82,6 +113,7 @@ const mapStateToProps = (state) => {
     age: state.age,
     ageScore: state.ageScore,
     education: state.education,
+    educationScore: state.educationScore,
     firstLang: state.firstLang,
     secLang: state.secondLang,
     experience: state.experience,

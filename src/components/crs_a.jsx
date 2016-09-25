@@ -10,19 +10,26 @@ class CrsA extends Component {
   constructor(props) {
     super(props)
 
+
+
+
+
+
+
+
+
     this.state = {
       schooling: [
         {value: null, name: 'Select...'},
-        {value: 'crs-school-1', name: 'Less than secondary'}, 
-        {value: 'crs-school-2', name: 'Secondary diploma'},
-        {value: 'crs-school-3', name: 'One-year degree, diploma or certificate from a university, college,' +
+        {value: 'lessHighSchool', name: 'Less than secondary'}, 
+        {value: 'highSchool', name: 'Secondary diploma'},
+        {value: 'oneYearPS', name: 'One-year degree, diploma or certificate from a university, college,' +
         'trade or technical school, or other institute'},
-        {value: 'crs-school-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute'}, 
-        {value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
-        {value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
-        {value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
-        {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
-        {value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)'}
+        {value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
+        {value: 'bachelor', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
+        {value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
+        {value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
+        {value: 'phd', name: 'Doctoral level university degree (Ph.D.)'}
       ],
       firstLanguage: [
         {value: null, name: 'Select...'},
