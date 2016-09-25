@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 const DonutChart = require('./donut_chart')
 const {connector} = require('../reducers/store')
+const {browserHistory} = require('react-router')
 
 class CrsA extends Component {
   constructor(props) {
@@ -52,20 +53,22 @@ class CrsA extends Component {
       school: '',
     }
     this.handleChange = this.handleChange.bind(this)
+    this.goToNextFormPage = this.goToNextFormPage.bind(this)
+    this.goToPreviousFormPage = this.goToPreviousFormPage.bind(this)
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crsaform)
+    // const node = ReactDOM.findDOMNode(this.refs.crsaform)
 
-    const addEvent = node.addEventListener || node.attachEvent
+    // const addEvent = node.addEventListener || node.attachEvent
 
-    addEvent('keypress', this.handleKeyPress.bind(this), false)
+    // addEvent('keypress', this.handleKeyPress.bind(this), false)
   }
 
   componentWillUnmount() {
-    const removeEvent = node.removeEventListener || node.detachEvent
+    // const removeEvent = node.removeEventListener || node.detachEvent
 
-    removeEvent('keypress', this.handleKeyPress.bind(this))
+    // removeEvent('keypress', this.handleKeyPress.bind(this))
   }
 
   handleKeyPress (event) {
@@ -115,11 +118,22 @@ class CrsA extends Component {
       }
     }
   }
-
   checkEnter (event) {
     if (event.key === 'Enter') {
       this.handleChange(event);
     }
+  }
+  goToNextFormPage (event) {
+    if(this.props.married){
+      browserHistory.replace('crs/b')
+    } else {
+      browserHistory.replace('crs/cd')
+    }
+    event.preventDefault()
+  }
+  goToPreviousFormPage (event) {
+    browserHistory.replace('')
+    event.preventDefault()
   }
   render() {
     var createList = (item, key) => {
@@ -156,6 +170,8 @@ class CrsA extends Component {
               onChange={this.handleChange}className='crs-select'>
               {this.state.workExperience.map(createList)}
              </select>
+             <input type="button" onClick={this.goToPreviousFormPage} value="Back to Home Page" />
+             <input type="button" onClick={this.goToNextFormPage} value="Next" />
           </form>
         </div>
         <DonutChart />

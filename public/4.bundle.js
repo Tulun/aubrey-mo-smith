@@ -24,9 +24,11 @@ webpackJsonp([4],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
+	    var cols = [["CRSA Score: ", this.props.CRSAScore], ["CRSB Score: ", this.props.CRSBScore], ["CRSC Score: ", this.props.CRSCScore], ['CRSD Score: ', this.props.CRSDScore]];
+	    cols[0][0] = cols[0][0] + cols[0][1], cols[1][0] = cols[1][0] + cols[1][1], cols[2][0] = cols[2][0] + cols[2][1], cols[3][0] = cols[3][0] + cols[3][1];
 	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
+	        columns: cols,
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -63,7 +65,17 @@ webpackJsonp([4],{
 	  },
 
 	  render: function render() {
-	    return _react2.default.createElement('div', { id: 'chart' });
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { id: 'chart' }),
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'total-score' },
+	        'Total Score: ',
+	        this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore
+	      )
+	    );
 	  }
 	});
 
@@ -2204,6 +2216,10 @@ webpackJsonp([4],{
 
 	var connector = _require.connector;
 
+	var _require2 = __webpack_require__(291);
+
+	var browserHistory = _require2.browserHistory;
+
 	var CrsB = function (_Component) {
 	  _inherits(CrsB, _Component);
 
@@ -2213,29 +2229,36 @@ webpackJsonp([4],{
 	    var _this = _possibleConstructorReturn(this, (CrsB.__proto__ || Object.getPrototypeOf(CrsB)).call(this, props));
 
 	    _this.state = {
-	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
-	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
+	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than secondary' }, { value: 'highSchool', name: 'Secondary School (high school graduation)' }, { value: 'oneYearPS', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'phd', name: 'Doctoral level university degree (Ph.D.)' }],
+	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'CLB 4 or less' }, { value: '5or6', name: 'CLB 5 or 6' }, { value: '7or8', name: 'CLB 7 or 8' }, { value: 'more9', name: 'CLB 9 or more' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	    _this.goToPreviousFormPage = _this.goToPreviousFormPage.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
+	      // const node = ReactDOM.findDOMNode(this.refs.crsbform)
 
-	      var addEvent = node.addEventListener || node.attachEvent;
+	      // const addEvent = node.addEventListener || node.attachEvent
 
-	      addEvent('keypress', this.handleKeyPress, false);
+	      // addEvent('keypress', this.handleKeyPress, false)
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
+	      // const removeEvent = node.removeEventListener || node.detachEvent
 
-	      removeEvent('keypress', this.handleKeyPress);
+	      // removeEvent('keypress', this.handleKeyPress)
+	    }
+	  }, {
+	    key: 'goToNextFormPage',
+	    value: function goToNextFormPage(event) {
+	      browserHistory.replace('crs/cd');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleKeyPress',
@@ -2243,6 +2266,12 @@ webpackJsonp([4],{
 	      if (event.keyCode === 13) {
 	        event.preventDefault();
 	      }
+	    }
+	  }, {
+	    key: 'goToPreviousFormPage',
+	    value: function goToPreviousFormPage(event) {
+	      browserHistory.replace('crs/a');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleChange',
@@ -2305,7 +2334,9 @@ webpackJsonp([4],{
 	              { id: 'spouse-first-lang',
 	                onChange: this.handleChange, className: 'crs-select' },
 	              this.state.spouseFirstLanguage.map(createList)
-	            )
+	            ),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToPreviousFormPage, value: 'Previous' }),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToNextFormPage, value: 'Next' })
 	          )
 	        ),
 	        _react2.default.createElement(DonutChart, null)

@@ -38,7 +38,6 @@ class Landing extends React.Component {
     }
   }
   goToFormPage (event) {
-    debugger
     browserHistory.push('crs/a')
     event.preventDefault()
   }

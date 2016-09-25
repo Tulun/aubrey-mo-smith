@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 const DonutChart = require('./donut_chart')
 const {connector} = require('../reducers/store')
+const {browserHistory} = require('react-router')
 
 class CrsB extends Component {
   constructor(props) {
@@ -32,28 +33,35 @@ class CrsB extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.goToPreviousFormPage = this.goToPreviousFormPage.bind(this)
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crsbform)
+    // const node = ReactDOM.findDOMNode(this.refs.crsbform)
 
-    const addEvent = node.addEventListener || node.attachEvent
+    // const addEvent = node.addEventListener || node.attachEvent
 
-    addEvent('keypress', this.handleKeyPress, false)
+    // addEvent('keypress', this.handleKeyPress, false)
   }
 
   componentWillUnmount() {
-    const removeEvent = node.removeEventListener || node.detachEvent
+    // const removeEvent = node.removeEventListener || node.detachEvent
 
-    removeEvent('keypress', this.handleKeyPress)
+    // removeEvent('keypress', this.handleKeyPress)
   }
-
+  goToNextFormPage (event) {
+    browserHistory.replace('crs/cd')
+    event.preventDefault()
+  }
   handleKeyPress (event) {
     if (event.keyCode === 13) {
       event.preventDefault()
     }
   }
-
+  goToPreviousFormPage (event) {
+    browserHistory.replace('crs/a')
+    event.preventDefault()
+  }
   handleChange (event) {
     const value = event.target.value 
     switch (event.target.id) {
@@ -90,6 +98,8 @@ class CrsB extends Component {
               onChange={this.handleChange} className='crs-select'>
               {this.state.spouseFirstLanguage.map(createList)}
              </select>
+             <input type="button" onClick={this.goToPreviousFormPage} value="Previous" />
+             <input type="button" onClick={this.goToNextFormPage} value="Next" />
           </form>
         </div>
         <DonutChart />

@@ -41,7 +41,7 @@ var DonutChart = React.createClass({
           console.log(value)
         }
       }
-    });
+    })
   },
 
   // These two are to replace the renderChart in render to address a bug.
