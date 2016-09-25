@@ -35,6 +35,8 @@
   "dependencies": {
     "axios": "0.9.1",
     "babel-preset-stage-1": "^6.1.18",
+    "c3": "^0.4.11",
+    "d3": "^3.5.17",
     "express": "4.13.4",
     "jquery": "^3.1.1",
     "lodash": "^3.10.1",
