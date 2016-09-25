@@ -1,0 +1,23 @@
+.flex-boxing {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.c3-event-rect-0, .c3-event-rect-2 {
+	display: none;
+}
+
+h1.title{
+	font-family: 'Oswald', sans-serif;
+	width: 100%;
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+}
+
+.crs-a {
+	background-color: #E7E7E7;
+	width: 50%;
+}

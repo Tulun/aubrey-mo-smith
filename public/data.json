@@ -1,0 +1,117 @@
+{
+  "ageCriteria": {
+      "single": {
+        "20to29": 100,
+        "19or30": 95,
+        "18or31": 90,
+        "32": 85,
+        "33": 80,
+        "34": 75,
+        "35": 70,
+        "36": 65,
+        "37": 60,
+        "38": 55,
+        "39": 50,
+        "40": 45,
+        "41": 35,
+        "42": 25,
+        "43": 15,
+        "44": 5
+    },
+    "married": {
+      "20to29": 110,
+      "19or30": 105,
+      "18or31": 99,
+      "32": 94,
+      "33": 88,
+      "34": 83,
+      "35": 77,
+      "36": 72,
+      "37": 66,
+      "38": 61,
+      "39": 55,
+      "40": 50,
+      "41": 39,
+      "42": 28,
+      "43": 17,
+      "44": 6
+    }
+  }, 
+  "educationCriteria": {
+    "single": {
+        "highSchool": 30,
+        "oneYearPS": 90,
+        "twoYearPS": 98,
+        "bachelor": 120,
+        "bachelorPG": 128,
+        "masterProfBatch": 135,
+        "phd": 150
+    },
+    "married": {
+        "highSchool": 28,
+        "oneYearPS": 84,
+        "twoYearPS": 91,
+        "bachelor": 112,
+        "bachelorPG": 119,
+        "masterProfBatch": 126,
+        "phd": 140
+    }
+  }, 
+  "firstLangCriteria": {
+    "married": {
+        "4or5": 6,
+        "5": 6,
+        "6": 8,
+        "7": 16,
+        "8": 22,
+        "9": 29,
+        "more10": 32
+    },
+    "single": {
+        "4or5": 6,
+        "5": 6,
+        "6": 9,
+        "7": 17,
+        "8": 23,
+        "9": 31,
+        "more10": 34
+    }
+  },
+  "secondLangCriteria": {
+    "5or6": 1,
+    "6": 1,
+    "7or8": 3,
+    "8": 3,
+    "more9": 6
+  },
+  "cdnWorkCriteria": {
+    "married": {
+      "1": 35,
+      "2": 46,
+      "3": 56,
+      "4": 63,
+      "more5": 70
+    },
+    "single": {
+      "1": 40,
+      "2": 53,
+      "3": 64,
+      "4": 72,
+      "more5": 80
+    }
+  },
+  "spouseEducationCriteria": {
+    "highSchool": 2,
+    "oneYearPS": 6,
+    "twoYearPS": 7,
+    "bachelor": 8,
+    "bachelorPG": 9,
+    "masterProfBatch": 10,
+    "phd": 10
+  },
+  "spouseFirstLangCriteria": {
+    "5or6": 1,
+    "7or8": 3,
+    "more9": 5
+  }
+}

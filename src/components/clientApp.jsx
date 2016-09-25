@@ -19,7 +19,41 @@ const myRoutes = {
         cb(null, require('./landing'))
       })
     }
-  }
+  },
+  childRoutes: [
+    {
+      path: 'dashboard',
+      getComponent(location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./dashboard'))
+        })
+      }
+    },
+    {
+      path: 'crs/a',
+      getComponent(location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./crs_a'))
+        })
+      }
+    },
+    {
+      path: 'crs/b',
+      getComponent(location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./crs_b'))
+        })
+      }
+    },
+    {
+      path: 'crs/cd',
+      getComponent(location, cb) {
+        require.ensure([], () => {
+          cb(null, require('./crs_cd'))
+        })
+      }
+    }
+  ]
 }
 
 const App = React.createClass({
