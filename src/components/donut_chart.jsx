@@ -7,14 +7,19 @@ const {connector} = require('../reducers/store')
 
 var DonutChart = React.createClass({
   renderChart: function () {
+    var cols = [
+      ["CRSA Score: ", this.props.CRSAScore],
+      ["CRSB Score: ", this.props.CRSBScore],
+      ["CRSC Score: ", this.props.CRSCScore],
+      ['CRSD Score: ', this.props.CRSDScore]
+    ];
+    cols[0][0] = cols[0][0] + cols[0][1],
+    cols[1][0] = cols[1][0] + cols[1][1],
+    cols[2][0] = cols[2][0] + cols[2][1],
+    cols[3][0] = cols[3][0] + cols[3][1]
     var chart = c3.generate({
       data: {
-        columns: [
-          ["CRS-A", this.props.CRSAScore],
-          ["CRS-B", this.props.CRSBScore],
-          ["CRS-C", this.props.CRSCScore],
-          ['CRD-D', this.props.CRSDScore]
-        ],
+        columns: cols,
         type : 'donut'
         // onclick: function (d, i) { console.log("onclick", d, i); },
         // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -50,7 +55,10 @@ var DonutChart = React.createClass({
 
   render: function () {
     return (
-      <div id="chart"></div>
+      <div>
+        <div id="chart"></div>
+        <p className='total-score'>Total Score: {this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore}</p>
+      </div>
     )
   }
 });
