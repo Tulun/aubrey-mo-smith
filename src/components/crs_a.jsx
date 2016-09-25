@@ -20,8 +20,34 @@ class CrsA extends Component {
         {value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
         {value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
         {value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
-        {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession (For professional degree, the degree program must have been in: medicine, veterinary medicine, dentistry, optometry, law, chiropractic medicine, or pharmacy.)"},
+        {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
         {value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)'}
+      ],
+      firstLanguage: [
+        {value: null, name: 'Select...'},
+        {value: 'crs-first-lang-1', name: 'Less than CLB 4'},
+        {value: 'crs-first-lang-2', name: 'CLB 4 or 5'},
+        {value: 'crs-first-lang-3', name: 'CLB 6'},
+        {value: 'crs-first-lang-4', name: 'CLB 7'},
+        {value: 'crs-first-lang-5', name: 'CLB 8'},
+        {value: 'crs-first-lang-6', name: 'CLB 9'},
+        {value: 'crs-first-lang-7', name: 'CLB 10 or more'}
+      ],
+      secondLanguage: [
+        {value: null, name: 'Select...'},
+        {value: 'crs-second-lang-1', name: 'Less than CLB 4'},
+        {value: 'crs-second-lang-2', name: 'CLB 5 or 6'},
+        {value: 'crs-second-lang-3', name: 'CLB 7 or 8'},
+        {value: 'crs-second-lang-4', name: 'CLB 9 or more'}
+      ],
+      workExperience: [
+        {value: null, name: 'Select...'},
+        {value: 'crs-work-experience-1', name: 'Less than 1 year'},
+        {value: 'crs-work-experience-2', name: '1 year'},
+        {value: 'crs-work-experience-3', name: '2 years'},
+        {value: 'crs-work-experience-4', name: '3 years'},
+        {value: 'crs-work-experience-5', name: '4 years'},
+        {value: 'crs-work-experience-6', name: '5 or more years'}
       ],
       age: 0,
       school: '',
@@ -76,11 +102,8 @@ class CrsA extends Component {
     }
   }
   render() {
-    var createSchoolList = (item, key) => {
+    var createList = (item, key) => {
       return <option className='crs-option' key={key} value={item.value}>{item.name}</option>
-    }
-    var createFirstLanguage = (item, key) => {
-
     }
     return (
       <div className='crs-a'>
@@ -94,35 +117,24 @@ class CrsA extends Component {
            onKeyPress={this.checkEnter.bind(this, 'age')} />
            <p className='crs-a-question'>What's your level of education?</p>
            <select id="education"
-            className='crs-select'
-            onChange={this.handleChange} >
-            {this.state.schooling.map(createSchoolList)}
+            onChange={this.handleChange}
+            className='crs-select'>
+            {this.state.schooling.map(createList)}
            </select>
            <p className='crs-a-question'>What's your first official language profiency?</p>
-           <select id="first-lang" className='crs-select' onChange={this.handleChange}>
-            <option className='crs-option' value='language-benchmark-1'>Less than CLB 4</option>
-            <option className='crs-option' value='language-benchmark-2'>CLB 4 or 5</option>
-            <option className='crs-option' value='language-benchmark-3'>CLB 6</option>
-            <option className='crs-option' value='language-benchmark-4'>CLB 7</option>
-            <option className='crs-option' value='language-benchmark-5'>CLB 8</option>
-            <option className='crs-option' value='language-benchmark-6'>CLB 9</option>
-            <option className='crs-option' value='language-benchmark-7'>CLB 10 or more</option>
+           <select id="first-lang"
+            onChange={this.handleChange} className='crs-select'>
+            {this.state.firstLanguage.map(createList)}
            </select>
            <p className='crs-a-question'>What's your second official language profiency?</p>
-           <select id="second-lang" className='crs-select' onChange={this.handleChange}>
-            <option className='crs-option' value='second-language-benchmark-1'>Less than CLB 4</option>
-            <option className='crs-option' value='second-language-benchmark-2'>CLB 5 or 6</option>
-            <option className='crs-option' value='second-language-benchmark-3'>CLB 7 or 8</option>
-            <option className='crs-option' value='second-language-benchmark-4'>CLB 9 or more</option>
+           <select id="second-lang"
+            onChange={this.handleChange} className='crs-select'>
+            {this.state.secondLanguage.map(createList)}
            </select>
            <p className='crs-a-question'>How much experience do you have working for a Canadian company?</p>
-           <select id="experience" className='crs-select' onChange={this.handleChange}>
-            <option className='crs-option' value='work-experience-1'>Less than 1 year</option>
-            <option className='crs-option' value='work-experience-2'>1 year</option>
-            <option className='crs-option' value='work-experience-3'>2 years</option>
-            <option className='crs-option' value='work-experience-4'>3 years</option>
-            <option className='crs-option' value='work-experience-5'>4 years</option>
-            <option className='crs-option' value='work-experience-6'>5 or more years</option>
+           <select id="experience"
+            onChange={this.handleChange}className='crs-select'>
+            {this.state.workExperience.map(createList)}
            </select>
         </form>
       </div>
