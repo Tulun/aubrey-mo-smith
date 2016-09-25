@@ -9,10 +9,9 @@ const {connector} = require('../reducers/store')
 class CrsA extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       schooling: [
-        {value: null, name: 'Select...'},
+        {value: null, name:'Select...'},
         {value: 'lessHighSchool', name: 'Less than secondary'}, 
         {value: 'highSchool', name: 'Secondary diploma'},
         {value: 'oneYearPS', name: 'One-year degree, diploma or certificate from a university, college,' +
