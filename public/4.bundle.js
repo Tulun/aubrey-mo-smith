@@ -2205,24 +2205,24 @@ webpackJsonp([4],{
 
 	var connector = _require.connector;
 
-	var CrsA = function (_Component) {
-	  _inherits(CrsA, _Component);
+	var CrsB = function (_Component) {
+	  _inherits(CrsB, _Component);
 
-	  function CrsA(props) {
-	    _classCallCheck(this, CrsA);
+	  function CrsB(props) {
+	    _classCallCheck(this, CrsB);
 
-	    var _this = _possibleConstructorReturn(this, (CrsA.__proto__ || Object.getPrototypeOf(CrsA)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CrsB.__proto__ || Object.getPrototypeOf(CrsB)).call(this, props));
 
 	    _this.state = {
-	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'crs-school-1', name: 'Less than secondary' }, { value: 'crs-school-2', name: 'Secondary diploma' }, { value: 'crs-school-3', name: 'One-year degree, diploma or certificate from a university, college,' + 'trade or technical school, or other institute' }, { value: 'crs-school-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute' }, { value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)' }],
-	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-first-lang-1', name: 'CLB 4 or less' }, { value: 'crs-first-lang-2', name: 'CLB 5 or 6' }, { value: 'crs-first-lang-3', name: 'CLB 7 or 8' }, { value: 'crs-first-lang-4', name: 'CLB 9 or more' }]
+	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
+	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(CrsA, [{
+	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
@@ -2250,20 +2250,11 @@ webpackJsonp([4],{
 	    value: function handleChange(event) {
 	      var value = event.target.value;
 	      switch (event.target.id) {
-	        case 'age':
-	          this.props.handleAge(value);
+	        case 'spouse-education':
+	          this.props.handleSpouseEducation(value);
 	          break;
-	        case 'education':
-	          this.props.handleEducation(value);
-	          break;
-	        case 'first-lang':
-	          this.props.handleFirstLang(value);
-	          break;
-	        case 'second-lang':
-	          this.props.handleSecondLang(value);
-	          break;
-	        case 'experience':
-	          this.props.handleExperience(value);
+	        case 'spouse-first-lang':
+	          this.props.handleSpouseFirstLang(value);
 	          break;
 	      }
 	    }
@@ -2323,10 +2314,10 @@ webpackJsonp([4],{
 	    }
 	  }]);
 
-	  return CrsA;
+	  return CrsB;
 	}(_react.Component);
 
-	module.exports = connector(CrsA);
+	module.exports = connector(CrsB);
 
 /***/ }
 

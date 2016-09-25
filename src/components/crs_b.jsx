@@ -6,30 +6,28 @@ import ReactDOM from 'react-dom'
 const DonutChart = require('./donut_chart')
 const {connector} = require('../reducers/store')
 
-class CrsA extends Component {
+class CrsB extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       spouseSchooling: [
         {value: null, name: 'Select...'},
-        {value: 'crs-school-1', name: 'Less than secondary'}, 
-        {value: 'crs-school-2', name: 'Secondary diploma'},
-        {value: 'crs-school-3', name: 'One-year degree, diploma or certificate from a university, college,' +
-        'trade or technical school, or other institute'},
-        {value: 'crs-school-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute'}, 
-        {value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
-        {value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, 
-        {value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
-        {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
-        {value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)'}
+        {value: 'no-high-school', name: 'Less than secondary'},
+        {value: 'high-school', name: 'Secondary School (high school graduation)'},
+        {value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute '},
+        {value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
+        {value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, 
+        {value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
+        {value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
+        {value: 'PHD', name: 'Doctoral level university degree (Ph.D.)'}
       ],
       spouseFirstLanguage: [
         {value: null, name: 'Select...'},
-        {value: 'crs-first-lang-1', name: 'CLB 4 or less'},
-        {value: 'crs-first-lang-2', name: 'CLB 5 or 6'},
-        {value: 'crs-first-lang-3', name: 'CLB 7 or 8'},
-        {value: 'crs-first-lang-4', name: 'CLB 9 or more'}
+        {value: 'CLB-4-or-less', name: 'CLB 4 or less'},
+        {value: 'CLB-4-or-5', name: 'CLB 5 or 6'},
+        {value: 'CLB-7-or-8', name: 'CLB 7 or 8'},
+        {value: 'CLB-9-or-more', name: 'CLB 9 or more'}
       ]
     }
     this.handleChange = this.handleChange.bind(this)
@@ -59,20 +57,11 @@ class CrsA extends Component {
   handleChange (event) {
     const value = event.target.value 
     switch (event.target.id) {
-      case 'age':
-        this.props.handleAge(value)
+      case 'spouse-education':
+        this.props.handleSpouseEducation(value)
         break
-      case 'education':
-        this.props.handleEducation(value)
-        break
-      case 'first-lang':
-        this.props.handleFirstLang(value)
-        break
-      case 'second-lang':
-        this.props.handleSecondLang(value)
-        break
-      case 'experience':
-        this.props.handleExperience(value)
+      case 'spouse-first-lang':
+        this.props.handleSpouseFirstLang(value)
         break
     }
   }
@@ -109,4 +98,4 @@ class CrsA extends Component {
   }
 }
 
-module.exports = connector(CrsA)
+module.exports = connector(CrsB)

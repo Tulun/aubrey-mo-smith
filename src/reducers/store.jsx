@@ -8,6 +8,8 @@ const HANDLE_FIRST_LANG = 'handleFirstLang'
 const HANDLE_SECOND_LANG = 'handleSecondLang'
 const HANDLE_EXPERIENCE = 'handleExperience'
 const HANDLE_MARITAL_STATUS = 'handleMaritalStatus'
+const HANDLE_SPOUSE_EDUCATION = 'handleSpouseEducation'
+const HANDLE_SPOUSE_FIRST_LANG = 'handleSpouseFirstLang'
 
 
 const initialState = {
@@ -16,34 +18,35 @@ const initialState = {
   ageScore: 0
 }
 
+const calculateAgeScore = (state, value) => {
+  let ageCriteria, ageScore
+  if (state.status) {
+    ageCriteria = data.ageCriteria.single
+  } else { 
+    ageCriteria = data.ageCriteria.married
+  }
+  if (value >= '20' && value <= '29') {
+    ageScore = ageCriteria['20to29'] 
+  } else if (value === '19' || value === '30') {
+    ageScore = ageCriteria['19or30'] 
+  } else if (value === '18' || value === '31') {
+    ageScore = ageCriteria['18or31']
+  } else {
+    ageScore = ageCriteria[value]
+  }
+
+  if (!ageScore) {
+    ageScore = 0
+  }
+  return ageScore
+}
 
 const rootReducer = (state = initialState, action) => {
-  let type = {}
-  let ageCriteria
-  let ageScore
+  
   switch (action.type) {
     case HANDLE_AGE:
-      if(state.status){
-        ageCriteria = data.ageCriteria.single
-      } else { 
-        ageCriteria = data.ageCriteria.married
-      }
-      if (action.value >= '20' && action.value <= '29') {
-        ageScore = ageCriteria['20to29'] 
-      } else if (action.value === '19' || action.value === '30') {
-        ageScore = ageCriteria['19or30'] 
-      } else if (action.value === '18' || action.value === '31') {
-        ageScore = ageCriteria['18or31']
-      } else {
-        ageScore = ageCriteria[action.value]
-      }
-
-      if (!ageScore) {
-        ageScore = 0
-      }
-      
-      type = {age: action.value, ageScore: ageScore}
-      return reduceChange(state, action, type)
+      const ageScore = calculateAgeScore(state, action.value)
+      return reduceChange(state, action, {age: action.value, ageScore: ageScore})
     case HANDLE_EDUCATION:
       return reduceChange(state, action, {education: action.value})
     case HANDLE_FIRST_LANG:
@@ -54,6 +57,10 @@ const rootReducer = (state = initialState, action) => {
       return reduceChange(state, action, {experience: action.value})
     case HANDLE_MARITAL_STATUS:
       return reduceChange(state, action, {married: action.value})
+    case HANDLE_SPOUSE_EDUCATION:
+      return reduceChange(state, action, {spouseEducation: action.value})
+    case HANDLE_SPOUSE_FIRST_LANG:
+      return reduceChange(state, action, {spouseFirstLang: action.value})
     default:
       return state
   }
@@ -78,7 +85,9 @@ const mapStateToProps = (state) => {
     firstLang: state.firstLang,
     secLang: state.secondLang,
     experience: state.experience,
-    married: state.married
+    married: state.married,
+    spouseEducation: state.spouseEducation,
+    spouseFirstLang: state.spouseFirstLang
   }
 }
 
@@ -101,6 +110,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleMaritalStatus (married) {
       dispatch({type: HANDLE_MARITAL_STATUS, value: married})
+    },
+    handleSpouseEducation (spouseEducation) {
+      dispatch({type: HANDLE_SPOUSE_EDUCATION, value: spouseEducation})
+    },
+    handleSpouseFirstLang (spouseFirstLang) {
+      dispatch({type: HANDLE_SPOUSE_FIRST_LANG, value: spouseFirstLang})
     }
   }
 }
