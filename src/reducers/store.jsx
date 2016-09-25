@@ -40,7 +40,6 @@ const store = redux.createStore(rootReducer, initialState, redux.compose(
 ))
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     age: state.age,
     education: state.education,

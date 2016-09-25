@@ -51,7 +51,7 @@ class CrsA extends Component {
         {value: 'crs-work-experience-6', name: '5 or more years'}
       ],
       age: 0,
-      school: '',
+      school: ''
     }
     this.handleChange = this.handleChange.bind(this)
   }

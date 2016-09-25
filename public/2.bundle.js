@@ -1,4 +1,4 @@
-webpackJsonp([1],{
+webpackJsonp([2,4],{
 
 /***/ 380:
 /***/ function(module, exports, __webpack_require__) {
@@ -49,9 +49,7 @@ webpackJsonp([1],{
 	          'h1',
 	          { className: 'title' },
 	          'Hello World'
-	        ),
-	        React.createElement(CrsA, null),
-	        React.createElement(DonutChart, null)
+	        )
 	      );
 	    }
 	  }]);
@@ -86,6 +84,8 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This component is for Core / Human capital factors of the calculator. 
 	// Note: The maximum # of points for this (A) and spousal (B) is 500 points.
+
+	var DonutChart = __webpack_require__(382);
 
 	var _require = __webpack_require__(354);
 
@@ -175,66 +175,71 @@ webpackJsonp([1],{
 	      };
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'crs-a' },
+	        null,
 	        _react2.default.createElement(
-	          'form',
-	          { ref: 'crsaform', className: 'crs-a-form' },
+	          'div',
+	          { className: 'crs-a' },
 	          _react2.default.createElement(
-	            'p',
-	            { className: 'crs-a-question' },
-	            'How old are you?'
-	          ),
-	          _react2.default.createElement('input', {
-	            id: 'age',
-	            type: 'number',
-	            onBlur: this.handleChange,
-	            onKeyPress: this.checkEnter.bind(this, 'age') }),
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'crs-a-question' },
-	            'What\'s your level of education?'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { id: 'education',
-	              onChange: this.handleChange,
-	              className: 'crs-select' },
-	            this.state.schooling.map(createList)
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'crs-a-question' },
-	            'What\'s your first official language profiency?'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { id: 'first-lang',
-	              onChange: this.handleChange, className: 'crs-select' },
-	            this.state.firstLanguage.map(createList)
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'crs-a-question' },
-	            'What\'s your second official language profiency?'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { id: 'second-lang',
-	              onChange: this.handleChange, className: 'crs-select' },
-	            this.state.secondLanguage.map(createList)
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            { className: 'crs-a-question' },
-	            'How much experience do you have working for a Canadian company?'
-	          ),
-	          _react2.default.createElement(
-	            'select',
-	            { id: 'experience',
-	              onChange: this.handleChange, className: 'crs-select' },
-	            this.state.workExperience.map(createList)
+	            'form',
+	            { ref: 'crsaform', className: 'crs-a-form' },
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-a-question' },
+	              'How old are you?'
+	            ),
+	            _react2.default.createElement('input', {
+	              id: 'age',
+	              type: 'number',
+	              onBlur: this.handleChange,
+	              onKeyPress: this.checkEnter.bind(this, 'age') }),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-a-question' },
+	              'What\'s your level of education?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'education',
+	                onChange: this.handleChange,
+	                className: 'crs-select' },
+	              this.state.schooling.map(createList)
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-a-question' },
+	              'What\'s your first official language profiency?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'first-lang',
+	                onChange: this.handleChange, className: 'crs-select' },
+	              this.state.firstLanguage.map(createList)
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-a-question' },
+	              'What\'s your second official language profiency?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'second-lang',
+	                onChange: this.handleChange, className: 'crs-select' },
+	              this.state.secondLanguage.map(createList)
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-a-question' },
+	              'How much experience do you have working for a Canadian company?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'experience',
+	                onChange: this.handleChange, className: 'crs-select' },
+	              this.state.workExperience.map(createList)
+	            )
 	          )
-	        )
+	        ),
+	        _react2.default.createElement(DonutChart, null)
 	      );
 	    }
 	  }]);

@@ -10,8 +10,6 @@ class Landing extends React.Component {
     return (
       <div>
         <h1 className='title'>Hello World</h1>
-        <CrsA />
-        <DonutChart />
       </div>
     )
   }
