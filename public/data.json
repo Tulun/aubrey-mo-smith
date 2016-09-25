@@ -99,5 +99,19 @@
       "4": 72,
       "more5": 80
     }
+  },
+  "spouseEducationCriteria": {
+    "highSchool": 2,
+    "oneYearPS": 6,
+    "twoYearPS": 7,
+    "bachelor": 8,
+    "bachelorPG": 9,
+    "masterProfBatch": 10,
+    "phd": 10
+  },
+  "spouseFirstLangCriteria": {
+    "5or6": 1,
+    "7or8": 3,
+    "more9": 5
   }
 }

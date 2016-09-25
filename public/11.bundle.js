@@ -9,15 +9,11 @@ webpackJsonp([11],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jQuery = __webpack_require__(385);
-
-	var _jQuery2 = _interopRequireDefault(_jQuery);
-
-	var _c = __webpack_require__(383);
-
-	var _c2 = _interopRequireDefault(_c);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var jQuery = __webpack_require__(385);
+	var c3 = __webpack_require__(383);
+	// const C3Chart = require("C3Chart")
 
 	var _require = __webpack_require__(354);
 
@@ -28,9 +24,9 @@ webpackJsonp([11],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    var chart = _c2.default.generate({
+	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
+	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B", this.props.CRSBScore], ["CRS-C", this.props.CRSCScore], ['CRD-D', this.props.CRSDScore]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -2216,8 +2212,8 @@ webpackJsonp([11],{
 	    var _this = _possibleConstructorReturn(this, (CrsB.__proto__ || Object.getPrototypeOf(CrsB)).call(this, props));
 
 	    _this.state = {
-	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
-	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
+	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than secondary' }, { value: 'highSchool', name: 'Secondary School (high school graduation)' }, { value: 'oneYearPS', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'phd', name: 'Doctoral level university degree (Ph.D.)' }],
+	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'CLB 4 or less' }, { value: '5or6', name: 'CLB 5 or 6' }, { value: '7or8', name: 'CLB 7 or 8' }, { value: 'more9', name: 'CLB 9 or more' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);

@@ -14,21 +14,21 @@ class CrsB extends Component {
     this.state = {
       spouseSchooling: [
         {value: null, name: 'Select...'},
-        {value: 'no-high-school', name: 'Less than secondary'},
-        {value: 'high-school', name: 'Secondary School (high school graduation)'},
-        {value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute '},
-        {value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
-        {value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, 
-        {value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
-        {value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
-        {value: 'PHD', name: 'Doctoral level university degree (Ph.D.)'}
+        {value: null, name: 'Less than secondary'},
+        {value: 'highSchool', name: 'Secondary School (high school graduation)'},
+        {value: 'oneYearPS', name: 'One-year program at a university, college, trade or technical school, or other institute '},
+        {value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute'},
+        {value: 'bachelor', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, 
+        {value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years'},
+        {value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
+        {value: 'phd', name: 'Doctoral level university degree (Ph.D.)'}
       ],
       spouseFirstLanguage: [
         {value: null, name: 'Select...'},
-        {value: 'CLB-4-or-less', name: 'CLB 4 or less'},
-        {value: 'CLB-4-or-5', name: 'CLB 5 or 6'},
-        {value: 'CLB-7-or-8', name: 'CLB 7 or 8'},
-        {value: 'CLB-9-or-more', name: 'CLB 9 or more'}
+        {value: null, name: 'CLB 4 or less'},
+        {value: '5or6', name: 'CLB 5 or 6'},
+        {value: '7or8', name: 'CLB 7 or 8'},
+        {value: 'more9', name: 'CLB 9 or more'}
       ]
     }
     this.handleChange = this.handleChange.bind(this)

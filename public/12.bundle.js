@@ -9,15 +9,11 @@ webpackJsonp([12],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jQuery = __webpack_require__(385);
-
-	var _jQuery2 = _interopRequireDefault(_jQuery);
-
-	var _c = __webpack_require__(383);
-
-	var _c2 = _interopRequireDefault(_c);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var jQuery = __webpack_require__(385);
+	var c3 = __webpack_require__(383);
+	// const C3Chart = require("C3Chart")
 
 	var _require = __webpack_require__(354);
 
@@ -28,9 +24,9 @@ webpackJsonp([12],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    var chart = _c2.default.generate({
+	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
+	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B", this.props.CRSBScore], ["CRS-C", this.props.CRSCScore], ['CRD-D', this.props.CRSDScore]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
