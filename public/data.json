@@ -99,5 +99,14 @@
       "4": 72,
       "more5": 80
     }
+  },
+  "spouseSchooling": {
+    "highSchool": 30,
+    "oneYearPS": 90,
+    "twoYearPS": 98,
+    "bachelor": 120,
+    "bachelorPG": 128,
+    "masterProfBatch": 135,
+    "phd": 150
   }
 }

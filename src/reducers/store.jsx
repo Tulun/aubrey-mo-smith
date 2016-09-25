@@ -29,7 +29,8 @@ const initialState = {
   secondLangScore: 0,
   experience: '',
   experienceScore: 0,
-  educationLanguageBonus: 0
+  educationLanguageBonus: 0,
+  experienceLanguageBonus: 0
 }
 
 const calculateAgeScore = (state, value) => {
@@ -199,8 +200,8 @@ const reduceChange = (state, action, type) => {
   if ((type.firstLangScore >= 16 && (type.firstLangScore < 29 || state.secondLangScore < 6) && state.secondLangScore >=3  && state.educationScore >= 84) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 29 || type.secondLangScore < 6) && type.secondLangScore >= 3 && state.educationScore >= 84) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 29 || type.secondLangScore < 6) && type.secondLangScore >= 3 && type.educationScore >= 84)) {
-    educationLanguageBonus = 13
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 13
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
 
@@ -208,8 +209,8 @@ const reduceChange = (state, action, type) => {
   if ((type.firstLangScore >= 16 && (type.firstLangScore < 6 || state.secondLangScore < 6) && state.secondLangScore >= 3 && state.educationScore >= 112 && state.status) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >= 3 && state.educationScore >= 112 && state.status) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >= 3 && type.educationScore >= 112 && state.status)) {
-    educationLanguageBonus = 25
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 25
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
 
@@ -217,8 +218,8 @@ const reduceChange = (state, action, type) => {
   if ((type.firstLangScore >= 16 && (type.firstLangScore < 29 || state.secondLangScore < 6) && state.secondLangScore >= 3 && state.educationScore >= 120) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 29 || type.secondLangScore < 6) && type.secondLangScore >= 3 && state.educationScore >= 120) ||
      (state.firstLangScore >= 16 && (state.firstLangScore < 29 || type.secondLangScore < 6) && type.secondLangScore >= 3 && type.educationScore >= 120)) {
-    educationLanguageBonus = 25
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 25
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
 
@@ -226,8 +227,8 @@ const reduceChange = (state, action, type) => {
   if ((type.firstLangScore >= 29 && state.secondLangScore >= 6 && state.educationScore >= 84) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && state.educationScore >= 84) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && type.educationScore >= 84)) {
-    educationLanguageBonus = 25
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 25
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
 
@@ -236,17 +237,52 @@ const reduceChange = (state, action, type) => {
   if ((type.firstLangScore >= 29 && state.secondLangScore >= 6 && state.educationScore >= 112 && state.status) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && state.educationScore >= 112 && state.status) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && type.educationScore >= 112 & state.status)) {
-    educationLanguageBonus = 50
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 50
+    CRSCScore = type.educationLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
   // This is determing the above but with both languages above 9 and single
   if ((type.firstLangScore >= 29 && state.secondLangScore >= 6 && state.educationScore >= 120) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && state.educationScore >= 120) ||
      (state.firstLangScore >= 29 && type.secondLangScore >= 6 && type.educationScore >= 120)) {
-    educationLanguageBonus = 50
-    CRSCScore = educationLanguageBonus
+    type.educationLanguageBonus = 50
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
     type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  if (type.firstLangScore < 16 || type.secondLangScore < 3 || type.educationScore < 84 ) {
+    type.educationLanguageBonus = 0
+    CRSCScore = type.educationLanguageBonus + state.experienceLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // Education/experience bonus. This is slightly off but works for demo purposes. Need to get edge case of marital status
+
+  if ((type.educationScore >= 84 && type.educationScore < 120 && state.experienceScore >= 35 && state.experienceScore < 46) ||
+    (state.educationScore >= 84 && state.educationScore < 120 && type.experienceScore >= 35 && type.experienceScore < 46)) {
+    type.experienceLanguageBonus = 13
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  if ((type.educationScore >= 119 && state.experienceScore >= 35 && state.experienceScore < 46) ||
+    (state.educationScore >= 119 && type.experienceScore >= 35 && type.experienceScore < 46)) {
+    type.experienceLanguageBonus = 25
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  if ((type.educationScore >= 84 && type.educationScore < 120 && state.experienceScore >= 126) ||
+    (state.educationScore >= 84 && state.educationScore < 120 && type.experienceScore >= 126)) {
+    type.experienceLanguageBonus = 25
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100) 
+  }
+
+  if ((type.educationScore >= 119 && state.experienceScore >= 46 )) {
+    type.experienceLanguageBonus = 50
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)   
   }
 
   console.log(type)
@@ -278,7 +314,8 @@ const mapStateToProps = (state) => {
     certQualify: state.certQualify,
     arrangedEmploy: state.arrangedEmploy,
     nominated: state.nominated,
-    educationBonus: state.educationBonus,
+    educationLanguageBonus: state.educationLanguageBonus,
+    experienceLanguageBonus: state.experienceLanguageBonus,
     CRSAScore: state.CRSAScore,
     CRSCScore: state.CRSCScore
   }
