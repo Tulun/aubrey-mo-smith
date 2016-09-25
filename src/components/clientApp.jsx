@@ -46,18 +46,10 @@ const myRoutes = {
       }
     },
     {
-      path: 'crs/c',
+      path: 'crs/cd',
       getComponent(location, cb) {
         require.ensure([], () => {
-          cb(null, require('./crs_c'))
-        })
-      }
-    },
-    {
-      path: 'crs/d',
-      getComponent(location, cb) {
-        require.ensure([], () => {
-          cb(null, require('./crs_d'))
+          cb(null, require('./crs_cd'))
         })
       }
     }
