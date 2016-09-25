@@ -58,6 +58,7 @@ var DonutChart = React.createClass({
       <div>
         <div id="chart"></div>
         <p className='total-score'>Total Score: {this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore}</p>
+        <p className='target-score'>Score to aim for: Above 450.</p>
       </div>
     )
   }

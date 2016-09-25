@@ -285,6 +285,11 @@ webpackJsonp([10],{
 	        { className: 'total-score' },
 	        'Total Score: ',
 	        this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'target-score' },
+	        'Score to aim for: Above 450.'
 	      )
 	    );
 	  }
