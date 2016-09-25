@@ -23,7 +23,7 @@ class CrsCD extends Component {
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crcdform)
+    const node = ReactDOM.findDOMNode(this.refs.crscdform)
 
     const addEvent = node.addEventListener || node.attachEvent
 
