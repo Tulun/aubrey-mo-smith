@@ -17,6 +17,7 @@ const HANDLE_PROV_TERRITORY_NOM = 'handleProvTerritoryNom'
 
 const initialState = {
   CRSAScore: 0,
+  CRSBScore: 0,
   CRSCScore: 0,
   status: '',
   age: 0,
@@ -30,7 +31,7 @@ const initialState = {
   experience: '',
   experienceScore: 0,
   educationLanguageBonus: 0,
-  experienceLanguageBonus: 0
+  experienceLanguageBonus: 0  
 }
 
 const calculateAgeScore = (state, value) => {
@@ -111,6 +112,17 @@ const calculateExperienceLangScore = (state, value) => {
   return cdnWorkLangScore
 }
 
+const calculateSpouseEducationScore = (state, value) => {
+  let spouseEducationCriteria, spouseEducationScore
+  spouseEducationCriteria = data.spouseEducationCriteria
+  spouseEducationScore = spouseEducationCriteria[value]
+  if (!spouseEducationScore) {
+    spouseEducationScore = 0
+  }
+  return spouseEducationScore
+}
+
+
 const rootReducer = (state = initialState, action) => {
   
   switch (action.type) {
@@ -132,7 +144,8 @@ const rootReducer = (state = initialState, action) => {
     case HANDLE_MARITAL_STATUS:
       return reduceChange(state, action, {married: action.value})
     case HANDLE_SPOUSE_EDUCATION:
-      return reduceChange(state, action, {spouseEducation: action.value})
+      const spouseEducationScore = calculateSpouseEducationScore(state, action.value)
+      return reduceChange(state, action, {spouseEducation: action.value, spouseEducationScore: spouseEducationScore})
     case HANDLE_SPOUSE_FIRST_LANG:
       return reduceChange(state, action, {spouseFirstLang: action.value})
     case HANDLE_CERT_QUALIFY:
@@ -147,7 +160,7 @@ const rootReducer = (state = initialState, action) => {
 }
 
 const reduceChange = (state, action, type) => {
-  let CRSAScore, CRSABScore, CRSCScore, CRSDScore, educationLanguageBonus
+  let CRSAScore, CRSBScore, CRSCScore, CRSDScore, educationLanguageBonus
 
   if (type.ageScore || type.ageScore === 0) {
     CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore + state.experienceScore
@@ -192,6 +205,13 @@ const reduceChange = (state, action, type) => {
     } else {
       type.CRSAScore = Math.min(CRSAScore, 500)
     }
+  }
+
+  // Calculations for CRS Score B. Note: Don't have the max between both setup yet (math 460/500 for A and B)
+
+  if (type.spouseEducationScore || type.spouseEducationScore === 0) {
+    CRSBScore = type.spouseEducationScore
+    type.CRSBScore = CRSBScore
   }
 
   // Calculations for CRS Score C.
@@ -317,6 +337,7 @@ const mapStateToProps = (state) => {
     educationLanguageBonus: state.educationLanguageBonus,
     experienceLanguageBonus: state.experienceLanguageBonus,
     CRSAScore: state.CRSAScore,
+    CRSBScore: state.CRSBScore,
     CRSCScore: state.CRSCScore
   }
 }
