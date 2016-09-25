@@ -26,8 +26,8 @@ class CrsB extends Component {
         {value: null, name: 'Select...'},
         {value: null, name: 'CLB 4 or less'},
         {value: '5or6', name: 'CLB 5 or 6'},
-        {value: 'CLB-7-or-', name: 'CLB 7 or 8'},
-        {value: 'CLB-9-or-more', name: 'CLB 9 or more'}
+        {value: '7or8', name: 'CLB 7 or 8'},
+        {value: 'more9', name: 'CLB 9 or more'}
       ]
     }
     this.handleChange = this.handleChange.bind(this)

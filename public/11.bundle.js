@@ -2217,7 +2217,7 @@ webpackJsonp([11],{
 
 	    _this.state = {
 	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than secondary' }, { value: 'highSchool', name: 'Secondary School (high school graduation)' }, { value: 'oneYearPS', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'phd', name: 'Doctoral level university degree (Ph.D.)' }],
-	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'CLB 4 or less' }, { value: '5or6', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
+	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'CLB 4 or less' }, { value: '5or6', name: 'CLB 5 or 6' }, { value: '7or8', name: 'CLB 7 or 8' }, { value: 'more9', name: 'CLB 9 or more' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);

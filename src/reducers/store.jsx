@@ -30,6 +30,10 @@ const initialState = {
   secondLangScore: 0,
   experience: '',
   experienceScore: 0,
+  spouseEducation: '',
+  spouseEducationScore: 0,
+  spouseFirstLang: '',
+  spouseFirstLangScore: 0, 
   educationLanguageBonus: 0,
   experienceLanguageBonus: 0  
 }
@@ -53,7 +57,6 @@ const calculateAgeScore = (state, value) => {
   if (!ageScore) {
     ageScore = 0
   }
-  console.log(ageScore)
   return ageScore
 }
 
@@ -122,6 +125,18 @@ const calculateSpouseEducationScore = (state, value) => {
   return spouseEducationScore
 }
 
+const calculateSpouseFirstLangScore = (state, value) => {
+  let spouseFirstLangCriteria, spouseFirstLangScore
+  spouseFirstLangCriteria = data.spouseFirstLangCriteria
+
+  spouseFirstLangScore = spouseFirstLangCriteria[value]
+  if (!spouseFirstLangScore) {
+    spouseFirstLangScore = 0
+  }
+  console.log(spouseFirstLangScore)
+  return spouseFirstLangScore
+}
+
 
 const rootReducer = (state = initialState, action) => {
   
@@ -147,7 +162,8 @@ const rootReducer = (state = initialState, action) => {
       const spouseEducationScore = calculateSpouseEducationScore(state, action.value)
       return reduceChange(state, action, {spouseEducation: action.value, spouseEducationScore: spouseEducationScore})
     case HANDLE_SPOUSE_FIRST_LANG:
-      return reduceChange(state, action, {spouseFirstLang: action.value})
+      const spouseFirstLangScore = calculateSpouseFirstLangScore(state, action.value)
+      return reduceChange(state, action, {spouseFirstLang: action.value, spouseFirstLangScore: spouseFirstLangScore})
     case HANDLE_CERT_QUALIFY:
       return reduceChange(state, action, {certQualify: action.value})
     case HANDLE_ARRANGED_EMPLOY:
@@ -161,7 +177,7 @@ const rootReducer = (state = initialState, action) => {
 
 const reduceChange = (state, action, type) => {
   let CRSAScore, CRSBScore, CRSCScore, CRSDScore, educationLanguageBonus
-
+  console.log(type)
   if (type.ageScore || type.ageScore === 0) {
     CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore + state.experienceScore
     if (state.status) {
@@ -210,10 +226,14 @@ const reduceChange = (state, action, type) => {
   // Calculations for CRS Score B. Note: Don't have the max between both setup yet (math 460/500 for A and B)
 
   if (type.spouseEducationScore || type.spouseEducationScore === 0) {
-    CRSBScore = type.spouseEducationScore
+    CRSBScore = type.spouseEducationScore + state.spouseFirstLangScore
     type.CRSBScore = CRSBScore
   }
 
+  if (type.spouseFirstLangScore || type.spouseFirstLangScore === 0) {
+    CRSBScore = state.spouseEducationScore + type.spouseFirstLangScore
+    type.CRSBScore = CRSBScore
+  }
   // Calculations for CRS Score C.
 
   // This is determining post sec program >1 year, and CLB language scores >7, but 1 less than 9.
@@ -305,8 +325,8 @@ const reduceChange = (state, action, type) => {
     type.CRSCScore = Math.min(CRSCScore, 100)   
   }
 
-  console.log(type)
-  console.log(state)
+  console.log('type is :', type)
+  console.log('state is :',state)
   const newState = {}
   Object.assign(newState, state, type)
   return newState
@@ -330,7 +350,9 @@ const mapStateToProps = (state) => {
     experienceScore: state.experienceScore,
     married: state.married,
     spouseEducation: state.spouseEducation,
+    spouseEducationScore: state.spouseEducationScore,
     spouseFirstLang: state.spouseFirstLang,
+    spouseFirstLangScore: state.spouseFirstLangScore,
     certQualify: state.certQualify,
     arrangedEmploy: state.arrangedEmploy,
     nominated: state.nominated,
