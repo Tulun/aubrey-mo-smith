@@ -2204,6 +2204,10 @@ webpackJsonp([4],{
 
 	var connector = _require.connector;
 
+	var _require2 = __webpack_require__(291);
+
+	var browserHistory = _require2.browserHistory;
+
 	var CrsB = function (_Component) {
 	  _inherits(CrsB, _Component);
 
@@ -2218,24 +2222,31 @@ webpackJsonp([4],{
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	    _this.goToPreviousFormPage = _this.goToPreviousFormPage.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
+	      // const node = ReactDOM.findDOMNode(this.refs.crsbform)
 
-	      var addEvent = node.addEventListener || node.attachEvent;
+	      // const addEvent = node.addEventListener || node.attachEvent
 
-	      addEvent('keypress', this.handleKeyPress, false);
+	      // addEvent('keypress', this.handleKeyPress, false)
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
+	      // const removeEvent = node.removeEventListener || node.detachEvent
 
-	      removeEvent('keypress', this.handleKeyPress);
+	      // removeEvent('keypress', this.handleKeyPress)
+	    }
+	  }, {
+	    key: 'goToNextFormPage',
+	    value: function goToNextFormPage(event) {
+	      browserHistory.replace('crs/cd');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleKeyPress',
@@ -2243,6 +2254,12 @@ webpackJsonp([4],{
 	      if (event.keyCode === 13) {
 	        event.preventDefault();
 	      }
+	    }
+	  }, {
+	    key: 'goToPreviousFormPage',
+	    value: function goToPreviousFormPage(event) {
+	      browserHistory.replace('crs/a');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleChange',
@@ -2305,7 +2322,9 @@ webpackJsonp([4],{
 	              { id: 'spouse-first-lang',
 	                onChange: this.handleChange, className: 'crs-select' },
 	              this.state.spouseFirstLanguage.map(createList)
-	            )
+	            ),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToPreviousFormPage, value: 'Previous' }),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToNextFormPage, value: 'Next' })
 	          )
 	        ),
 	        _react2.default.createElement(DonutChart, null)
