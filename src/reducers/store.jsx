@@ -17,19 +17,27 @@ const HANDLE_PROV_TERRITORY_NOM = 'handleProvTerritoryNom'
 
 const initialState = {
   CRSAScore: 0,
+  CRSCScore: 0,
   status: '',
   age: 0,
   ageScore: 0,
   education: '',
-  educationScore: 0
+  educationScore: 0,
+  firstLang: '',
+  firstLangScore: 0,
+  secondLang: '',
+  secondLangScore: 0,
+  experience: '',
+  experienceScore: 0,
+  educationLanguageBonus: 0
 }
 
 const calculateAgeScore = (state, value) => {
   let ageCriteria, ageScore
   if (state.status) {
-    ageCriteria = data.ageCriteria.single
-  } else { 
     ageCriteria = data.ageCriteria.married
+  } else { 
+    ageCriteria = data.ageCriteria.single
   }
   if (value >= '20' && value <= '29') {
     ageScore = ageCriteria['20to29'] 
@@ -40,19 +48,19 @@ const calculateAgeScore = (state, value) => {
   } else {
     ageScore = ageCriteria[value]
   }
-
   if (!ageScore) {
     ageScore = 0
   }
+  console.log(ageScore)
   return ageScore
 }
 
 const calculateEducationScore = (state, value) => {
   let educationCriteria, educationScore
   if (state.status) {
-    educationCriteria = data.educationCriteria.single
-  } else { 
     educationCriteria = data.educationCriteria.married
+  } else { 
+    educationCriteria = data.educationCriteria.single
   }
   educationScore = educationCriteria[value]
   if (!educationScore) {
@@ -62,15 +70,44 @@ const calculateEducationScore = (state, value) => {
 }
 
 const calculateFirstLangScore = (state, value) => {
-  debugger
+  let firstLangCriteria, firstLangScore
+  if (state.status) {
+    firstLangCriteria = data.firstLangCriteria.married
+  } else {
+    firstLangCriteria = data.firstLangCriteria.single
+  }
+
+  firstLangScore = firstLangCriteria[value]
+  if (!firstLangScore) {
+    firstLangScore = 0
+  }
+  return firstLangScore
 }
 
 const calculateSecondLangScore = (state, value) => {
-  debugger
+  let secondLangCriteria, secondLangScore
+  secondLangCriteria = data.secondLangCriteria
+
+  secondLangScore = secondLangCriteria[value]
+  if (!secondLangScore) {
+    secondLangScore = 0
+  }
+  return secondLangScore
 }
 
 const calculateExperienceLangScore = (state, value) => {
-  debugger
+  let cdnWorkCriteria, cdnWorkLangScore
+  if (state.status) {
+    cdnWorkCriteria = data.cdnWorkCriteria.married
+  } else {
+    cdnWorkCriteria = data.cdnWorkCriteria.single
+  }
+
+  cdnWorkLangScore = cdnWorkCriteria[value]
+  if (!cdnWorkLangScore) {
+    cdnWorkLangScore = 0
+  }
+  return cdnWorkLangScore
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -109,15 +146,110 @@ const rootReducer = (state = initialState, action) => {
 }
 
 const reduceChange = (state, action, type) => {
-  let CRSAScore;
-  if (type.ageScore) {
-    CRSAScore = type.ageScore + state.educationScore 
-    type.CRSAScore = CRSAScore
+  let CRSAScore, CRSABScore, CRSCScore, CRSDScore, educationLanguageBonus
+
+  if (type.ageScore || type.ageScore === 0) {
+    CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore + state.experienceScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 100)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 110)
+    }
   }
-  if (type.educationScore) {
-    CRSAScore = type.educationScore + state.ageScore
-    type.CRSAScore = CRSAScore
+
+  if (type.educationScore || type.educationScore === 0) {
+    CRSAScore = type.educationScore + state.ageScore + state.firstLangScore + state.secondLangScore + state.experienceScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 460)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 500)
+    }
   }
+
+  if (type.firstLangScore || type.firstLangScore === 0) {
+    CRSAScore = type.firstLangScore + state.ageScore + state.educationScore + state.secondLangScore + state.experienceScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 460)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 500)
+    }
+  }
+
+  if (type.secondLangScore || type.secondLangScore === 0) {
+    CRSAScore = type.secondLangScore + state.ageScore + state.educationScore + state.firstLangScore + state.experienceScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 460)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 500)
+    }
+  }
+
+  if (type.experienceScore || type.experienceScore === 0) {
+    CRSAScore = type.experienceScore + state.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 460)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 500)
+    }
+  }
+
+  // Calculations for CRS Score C.
+
+  // This is determining post sec program >1 year, and CLB language scores >7, but 1 less than 9.
+  if ((type.firstLangScore >= 3 && (type.firstLangScore < 6 || state.secondLangScore < 6) && state.secondLangScore >=3 && state.educationScore >= 84) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && state.educationScore >= 84) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && type.educationScore >= 84)) {
+    educationLanguageBonus = 13
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // This is determining the above but with two or more post secondary and if they are married.
+  if ((type.firstLangScore >= 3 && (type.firstLangScore < 6 || state.secondLangScore < 6) && state.secondLangScore >=3 && state.educationScore >= 112 && state.status) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && state.educationScore >= 112 && state.status) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && type.educationScore >= 112 && state.status)) {
+    educationLanguageBonus = 25
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // This is determining the above but with two or more post secondary and if they are single.
+  if ((type.firstLangScore >= 3 && (type.firstLangScore < 6 || state.secondLangScore < 6) && state.secondLangScore >=3 && state.educationScore >= 120) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && state.educationScore >= 120) ||
+     (state.firstLangScore >= 3 && (state.firstLangScore < 6 || type.secondLangScore < 6) && type.secondLangScore >=3 && type.educationScore >= 120)) {
+    educationLanguageBonus = 25
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // This is determining post sec program >1 year, and CLB language scores >9.
+  if ((type.firstLangScore >= 6 && state.secondLangScore >= 6 && state.educationScore >= 84) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && state.educationScore >= 84) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && type.educationScore >= 84)) {
+    educationLanguageBonus = 25
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // This is determing the above but with both languages above 9 and married
+  
+  if ((type.firstLangScore >= 6 && state.secondLangScore >= 6 && state.educationScore >= 112 && state.status) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && state.educationScore >= 112 && state.status) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && type.educationScore >= 112 & state.status)) {
+    educationLanguageBonus = 50
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+  // This is determing the above but with both languages above 9 and single
+  if ((type.firstLangScore >= 6 && state.secondLangScore >= 6 && state.educationScore >= 120) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && state.educationScore >= 120) ||
+     (state.firstLangScore >= 6 && type.secondLangScore >= 6 && type.educationScore >= 120)) {
+    educationLanguageBonus = 50
+    CRSCScore = educationLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  console.log(type)
   const newState = {}
   Object.assign(newState, state, type)
   return newState
@@ -135,15 +267,19 @@ const mapStateToProps = (state) => {
     education: state.education,
     educationScore: state.educationScore,
     firstLang: state.firstLang,
-    secLang: state.secondLang,
+    firstLangScore: state.firstLangScore,
+    secondLang: state.secondLang,
     experience: state.experience,
+    experienceScore: state.experienceScore,
     married: state.married,
     spouseEducation: state.spouseEducation,
     spouseFirstLang: state.spouseFirstLang,
     certQualify: state.certQualify,
     arrangedEmploy: state.arrangedEmploy,
     nominated: state.nominated,
-    CRSAScore: state.CRSAScore
+    educationBonus: state.educationBonus,
+    CRSAScore: state.CRSAScore,
+    CRSCScore: state.CRSCScore
   }
 }
 

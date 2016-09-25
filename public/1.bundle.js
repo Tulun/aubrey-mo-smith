@@ -41,6 +41,8 @@ webpackJsonp([1],{
 	      married: [{ value: null, name: 'Select...' }, { value: true, name: 'Married or Common Law' }, { value: false, name: 'Single' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.goToFormPage = _this.goToFormPage.bind(_this);
+
 	    return _this;
 	  }
 
@@ -63,6 +65,13 @@ webpackJsonp([1],{
 	            break;
 	        }
 	      }
+	    }
+	  }, {
+	    key: 'goToFormPage',
+	    value: function goToFormPage(event) {
+	      debugger;
+	      browserHistory.push('crs/a');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'render',
@@ -89,7 +98,8 @@ webpackJsonp([1],{
 	            className: 'pre-question-select',
 	            onChange: this.handleChange },
 	          this.state.married.map(createList)
-	        )
+	        ),
+	        React.createElement('input', { type: 'button', onClick: this.goToFormPage, value: 'Go To Assessment' })
 	      );
 	    }
 	  }]);
@@ -127,7 +137,7 @@ webpackJsonp([1],{
 	  renderChart: function renderChart() {
 	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C"], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },

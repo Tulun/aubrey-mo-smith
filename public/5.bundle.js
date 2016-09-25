@@ -26,7 +26,7 @@ webpackJsonp([5],{
 	  renderChart: function renderChart() {
 	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C"], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
