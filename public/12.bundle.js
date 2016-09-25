@@ -2249,16 +2249,32 @@ webpackJsonp([12],{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'cert-qualify':
-	          this.props.handleCertQualify(value);
-	          break;
-	        case 'arranged-employ':
-	          this.props.handleArrangedEmploy(value);
-	          break;
-	        case 'prov-territory-nom':
-	          this.props.handleProvTerritoryNom(value);
-	          break;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'cert-qualify':
+	            this.props.handleCertQualify(value);
+	            break;
+	          case 'arranged-employ':
+	            this.props.handleArrangedEmploy(value);
+	            break;
+	          case 'prov-territory-nom':
+	            this.props.handleProvTerritoryNom(value);
+	            break;
+	        }
+	      } else {
+	        value = value == 'true';
+	        switch (event.target.id) {
+	          case 'cert-qualify':
+	            this.props.handleCertQualify(value);
+	            break;
+	          case 'arranged-employ':
+	            this.props.handleArrangedEmploy(value);
+	            break;
+	          case 'prov-territory-nom':
+	            this.props.handleProvTerritoryNom(value);
+	            break;
+	        }
 	      }
 	    }
 	  }, {

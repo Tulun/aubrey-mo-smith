@@ -43,17 +43,33 @@ class CrsCD extends Component {
   }
 
   handleChange (event) {
-    const value = event.target.value 
-    switch (event.target.id) {
-      case 'cert-qualify':
-        this.props.handleCertQualify(value)
-        break
-      case 'arranged-employ':
-        this.props.handleArrangedEmploy(value)
-        break
-      case 'prov-territory-nom':
-        this.props.handleProvTerritoryNom(value)
-        break
+    let value = event.target.value 
+    if (value === 'Select...') {
+      value = null;
+      switch (event.target.id) {
+        case 'cert-qualify':
+          this.props.handleCertQualify(value)
+          break
+        case 'arranged-employ':
+          this.props.handleArrangedEmploy(value)
+          break
+        case 'prov-territory-nom':
+          this.props.handleProvTerritoryNom(value)
+          break
+      }
+    } else {
+      value = value == 'true'
+      switch (event.target.id) {
+        case 'cert-qualify':
+          this.props.handleCertQualify(value)
+          break
+        case 'arranged-employ':
+          this.props.handleArrangedEmploy(value)
+          break
+        case 'prov-territory-nom':
+          this.props.handleProvTerritoryNom(value)
+          break
+      }
     }
   }
 
