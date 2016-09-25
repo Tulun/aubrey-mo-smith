@@ -67,7 +67,6 @@ webpackJsonp([1],{
 	  }, {
 	    key: 'goToFormPage',
 	    value: function goToFormPage(event) {
-	      debugger;
 	      browserHistory.push('crs/a');
 	      event.preventDefault();
 	    }

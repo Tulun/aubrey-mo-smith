@@ -26,9 +26,11 @@ webpackJsonp([4],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
+	    var cols = [["CRSA Score: ", this.props.CRSAScore], ["CRSB Score: ", this.props.CRSBScore], ["CRSC Score: ", this.props.CRSCScore], ['CRSD Score: ', this.props.CRSDScore]];
+	    cols[0][0] = cols[0][0] + cols[0][1], cols[1][0] = cols[1][0] + cols[1][1], cols[2][0] = cols[2][0] + cols[2][1], cols[3][0] = cols[3][0] + cols[3][1];
 	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B", this.props.CRSBScore], ["CRS-C", this.props.CRSCScore], ['CRD-D', this.props.CRSDScore]],
+	        columns: cols,
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -65,7 +67,22 @@ webpackJsonp([4],{
 	  },
 
 	  render: function render() {
-	    return _react2.default.createElement('div', { id: 'chart' });
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { id: 'chart' }),
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'total-score' },
+	        'Total Score: ',
+	        this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'target-score' },
+	        'Score to aim for: Above 450.'
+	      )
+	    );
 	  }
 	});
 
@@ -2205,6 +2222,10 @@ webpackJsonp([4],{
 
 	var connector = _require.connector;
 
+	var _require2 = __webpack_require__(291);
+
+	var browserHistory = _require2.browserHistory;
+
 	var CrsB = function (_Component) {
 	  _inherits(CrsB, _Component);
 
@@ -2219,24 +2240,31 @@ webpackJsonp([4],{
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	    _this.goToPreviousFormPage = _this.goToPreviousFormPage.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
+	      // const node = ReactDOM.findDOMNode(this.refs.crsbform)
 
-	      var addEvent = node.addEventListener || node.attachEvent;
+	      // const addEvent = node.addEventListener || node.attachEvent
 
-	      addEvent('keypress', this.handleKeyPress, false);
+	      // addEvent('keypress', this.handleKeyPress, false)
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
+	      // const removeEvent = node.removeEventListener || node.detachEvent
 
-	      removeEvent('keypress', this.handleKeyPress);
+	      // removeEvent('keypress', this.handleKeyPress)
+	    }
+	  }, {
+	    key: 'goToNextFormPage',
+	    value: function goToNextFormPage(event) {
+	      browserHistory.replace('crs/cd');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleKeyPress',
@@ -2244,6 +2272,12 @@ webpackJsonp([4],{
 	      if (event.keyCode === 13) {
 	        event.preventDefault();
 	      }
+	    }
+	  }, {
+	    key: 'goToPreviousFormPage',
+	    value: function goToPreviousFormPage(event) {
+	      browserHistory.replace('crs/a');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'handleChange',
@@ -2306,7 +2340,9 @@ webpackJsonp([4],{
 	              { id: 'spouse-first-lang',
 	                onChange: this.handleChange, className: 'crs-select' },
 	              this.state.spouseFirstLanguage.map(createList)
-	            )
+	            ),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToPreviousFormPage, value: 'Previous' }),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToNextFormPage, value: 'Next' })
 	          )
 	        ),
 	        _react2.default.createElement(DonutChart, null)

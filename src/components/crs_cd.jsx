@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 const DonutChart = require('./donut_chart')
 const {connector} = require('../reducers/store')
+const {browserHistory} = require('react-router')
+
 
 class CrsCD extends Component {
   constructor(props) {
@@ -20,20 +22,21 @@ class CrsCD extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.goToPreviousFormPage = this.goToPreviousFormPage.bind(this)
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crscdform)
+    // const node = ReactDOM.findDOMNode(this.refs.crscdform)
 
-    const addEvent = node.addEventListener || node.attachEvent
+    // const addEvent = node.addEventListener || node.attachEvent
 
-    addEvent('keypress', this.handleKeyPress, false)
+    // addEvent('keypress', this.handleKeyPress, false)
   }
 
   componentWillUnmount() {
-    const removeEvent = node.removeEventListener || node.detachEvent
+    // const removeEvent = node.removeEventListener || node.detachEvent
 
-    removeEvent('keypress', this.handleKeyPress)
+    // removeEvent('keypress', this.handleKeyPress)
   }
 
   handleKeyPress (event) {
@@ -72,7 +75,14 @@ class CrsCD extends Component {
       }
     }
   }
-
+  goToPreviousFormPage (event) {
+    if(this.props.married){
+      browserHistory.replace('crs/b')
+    } else {
+      browserHistory.replace('crs/a')
+    }   
+    event.preventDefault()
+  }
   checkEnter (event) {
     if (event.key === 'Enter') {
       this.handleChange(event);
@@ -102,6 +112,7 @@ class CrsCD extends Component {
             onChange={this.handleChange} className='crs-select'>
               {this.state.yes_no.map(createList)}
             </select>
+            <input type="button" onClick={this.goToPreviousFormPage} value="Previous" />
           </form>
         </div>
         <DonutChart />
