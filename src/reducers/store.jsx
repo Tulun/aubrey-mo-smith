@@ -1,11 +1,13 @@
 const redux = require('redux')
 const reactRedux = require('react-redux')
+const data = require('../../public/data.json')
 
 const HANDLE_AGE = 'handleAge'
 const HANDLE_EDUCATION = 'handleEducation'
 const HANDLE_FIRST_LANG = 'handleFirstLang'
 const HANDLE_SECOND_LANG = 'handleSecondLang'
 const HANDLE_EXPERIENCE = 'handleExperience'
+const HANDLE_MARITAL_STATUS = 'handleMaritalStatus'
 
 
 const initialState = {
@@ -14,17 +16,33 @@ const initialState = {
   ageScore: 0
 }
 
+
 const rootReducer = (state = initialState, action) => {
   let type = {}
+  let ageCriteria
+  let ageScore
   switch (action.type) {
     case HANDLE_AGE:
-      if (action.value > 20) {
-        const ageScore = 100
-        type = {age: action.value, ageScore: ageScore}
-      } else {
-        const ageScore = 50
-        type = {age: action.value, ageScore: ageScore}
+      if(state.status){
+        ageCriteria = data.ageCriteria.single
+      } else { 
+        ageCriteria = data.ageCriteria.married
       }
+      if (action.value >= '20' && action.value <= '29') {
+        ageScore = ageCriteria['20to29'] 
+      } else if (action.value === '19' || action.value === '30') {
+        ageScore = ageCriteria['19or30'] 
+      } else if (action.value === '18' || action.value === '31') {
+        ageScore = ageCriteria['18or31']
+      } else {
+        ageScore = ageCriteria[action.value]
+      }
+
+      if (!ageScore) {
+        ageScore = 0
+      }
+      
+      type = {age: action.value, ageScore: ageScore}
       return reduceChange(state, action, type)
     case HANDLE_EDUCATION:
       return reduceChange(state, action, {education: action.value})
@@ -34,6 +52,8 @@ const rootReducer = (state = initialState, action) => {
       return reduceChange(state, action, {secondLang: action.value})
     case HANDLE_EXPERIENCE:
       return reduceChange(state, action, {experience: action.value})
+    case HANDLE_MARITAL_STATUS:
+      return reduceChange(state, action, {married: action.value})
     default:
       return state
   }
@@ -57,7 +77,8 @@ const mapStateToProps = (state) => {
     education: state.education,
     firstLang: state.firstLang,
     secLang: state.secondLang,
-    experience: state.experience
+    experience: state.experience,
+    married: state.married
   }
 }
 
@@ -77,6 +98,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleExperience (experience) {
       dispatch({type: HANDLE_EXPERIENCE, value: experience})
+    },
+    handleMaritalStatus (married) {
+      dispatch({type: HANDLE_MARITAL_STATUS, value: married})
     }
   }
 }
