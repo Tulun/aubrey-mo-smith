@@ -9,13 +9,23 @@ const HANDLE_EXPERIENCE = 'handleExperience'
 
 
 const initialState = {
-  age: ''
+  status: '',
+  age: 0,
+  ageScore: 0
 }
 
 const rootReducer = (state = initialState, action) => {
+  let type = {}
   switch (action.type) {
     case HANDLE_AGE:
-      return reduceChange(state, action, {age: action.value})
+      if (action.value > 20) {
+        const ageScore = 100
+        type = {age: action.value, ageScore: ageScore}
+      } else {
+        const ageScore = 50
+        type = {age: action.value, ageScore: ageScore}
+      }
+      return reduceChange(state, action, type)
     case HANDLE_EDUCATION:
       return reduceChange(state, action, {education: action.value})
     case HANDLE_FIRST_LANG:
@@ -41,10 +51,12 @@ const store = redux.createStore(rootReducer, initialState, redux.compose(
 
 const mapStateToProps = (state) => {
   return {
+    status: state.status,
     age: state.age,
+    ageScore: state.ageScore,
     education: state.education,
-    firstLangProf: state.firstLang,
-    secLangProf: state.secondLang,
+    firstLang: state.firstLang,
+    secLang: state.secondLang,
     experience: state.experience
   }
 }
