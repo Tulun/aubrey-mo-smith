@@ -10,17 +10,10 @@ var DonutChart = React.createClass({
     var chart = c3.generate({
       data: {
         columns: [
-<<<<<<< HEAD
-          ["CRS-A", this.props.ageScore],
+          ["CRS-A", this.props.ageScore, this.props.educationScore],
           ["CRS-B"],
           ["CRS-C"],
-          ['CRD-D']
-=======
-          ["CRS-A", this.props.ageScore, this.props.educationScore],
-          ["CRS-B", 50, 100, 40],
-          ["CRS-C", 100, 200],
           ['CRD-D', 50]
->>>>>>> 84dd1c2e12c5f595e05ea152bb0be30efba55479
         ],
         type : 'donut'
         // onclick: function (d, i) { console.log("onclick", d, i); },
