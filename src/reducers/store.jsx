@@ -7,6 +7,8 @@ const HANDLE_FIRST_LANG = 'handleFirstLang'
 const HANDLE_SECOND_LANG = 'handleSecondLang'
 const HANDLE_EXPERIENCE = 'handleExperience'
 const HANDLE_MARITAL_STATUS = 'handleMaritalStatus'
+const HANDLE_SPOUSE_EDUCATION = 'handleSpouseEducation'
+const HANDLE_SPOUSE_FIRST_LANG = 'handleSpouseFirstLang'
 
 
 const initialState = {
@@ -27,6 +29,10 @@ const rootReducer = (state = initialState, action) => {
       return reduceChange(state, action, {experience: action.value})
     case HANDLE_MARITAL_STATUS:
       return reduceChange(state, action, {married: action.value})
+    case HANDLE_SPOUSE_EDUCATION:
+      return reduceChange(state, action, {spouseEducation: action.value})
+    case HANDLE_SPOUSE_FIRST_LANG:
+      return reduceChange(state, action, {spouseFirstLang: action.value})
     default:
       return state
   }
@@ -49,7 +55,9 @@ const mapStateToProps = (state) => {
     firstLangProf: state.firstLang,
     secLangProf: state.secondLang,
     experience: state.experience,
-    married: state.married
+    married: state.married,
+    spouseEducation: state.spouseEducation,
+    spouseFirstLang: state.spouseFirstLang
   }
 }
 
@@ -72,6 +80,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleMaritalStatus (married) {
       dispatch({type: HANDLE_MARITAL_STATUS, value: married})
+    },
+    handleSpouseEducation (spouseEducation) {
+      dispatch({type: HANDLE_SPOUSE_EDUCATION, value: spouseEducation})
+    },
+    handleSpouseFirstLang (spouseFirstLang) {
+      dispatch({type: HANDLE_SPOUSE_FIRST_LANG, value: spouseFirstLang})
     }
   }
 }
