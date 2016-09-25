@@ -2220,6 +2220,10 @@ webpackJsonp([12],{
 
 	var connector = _require.connector;
 
+	var _require2 = __webpack_require__(291);
+
+	var browserHistory = _require2.browserHistory;
+
 	var CrsCD = function (_Component) {
 	  _inherits(CrsCD, _Component);
 
@@ -2234,24 +2238,25 @@ webpackJsonp([12],{
 
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	    _this.goToPreviousFormPage = _this.goToPreviousFormPage.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(CrsCD, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crscdform);
+	      // const node = ReactDOM.findDOMNode(this.refs.crscdform)
 
-	      var addEvent = node.addEventListener || node.attachEvent;
+	      // const addEvent = node.addEventListener || node.attachEvent
 
-	      addEvent('keypress', this.handleKeyPress, false);
+	      // addEvent('keypress', this.handleKeyPress, false)
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
+	      // const removeEvent = node.removeEventListener || node.detachEvent
 
-	      removeEvent('keypress', this.handleKeyPress);
+	      // removeEvent('keypress', this.handleKeyPress)
 	    }
 	  }, {
 	    key: 'handleKeyPress',
@@ -2291,6 +2296,16 @@ webpackJsonp([12],{
 	            break;
 	        }
 	      }
+	    }
+	  }, {
+	    key: 'goToPreviousFormPage',
+	    value: function goToPreviousFormPage(event) {
+	      if (this.props.married) {
+	        browserHistory.replace('crs/b');
+	      } else {
+	        browserHistory.replace('crs/a');
+	      }
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'checkEnter',
@@ -2351,7 +2366,8 @@ webpackJsonp([12],{
 	              { id: 'prov-territory-nom',
 	                onChange: this.handleChange, className: 'crs-select' },
 	              this.state.yes_no.map(createList)
-	            )
+	            ),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToPreviousFormPage, value: 'Previous' })
 	          )
 	        ),
 	        _react2.default.createElement(DonutChart, null)

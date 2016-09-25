@@ -30,6 +30,10 @@ webpackJsonp([10],{
 
 	var connector = _require.connector;
 
+	var _require2 = __webpack_require__(291);
+
+	var browserHistory = _require2.browserHistory;
+
 	var CrsA = function (_Component) {
 	  _inherits(CrsA, _Component);
 
@@ -47,24 +51,26 @@ webpackJsonp([10],{
 	      school: ''
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.goToNextFormPage = _this.goToNextFormPage.bind(_this);
+	    _this.goToPreviousFormPage = _this.goToPreviousFormPage.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(CrsA, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsaform);
+	      // const node = ReactDOM.findDOMNode(this.refs.crsaform)
 
-	      var addEvent = node.addEventListener || node.attachEvent;
+	      // const addEvent = node.addEventListener || node.attachEvent
 
-	      addEvent('keypress', this.handleKeyPress.bind(this), false);
+	      // addEvent('keypress', this.handleKeyPress.bind(this), false)
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
+	      // const removeEvent = node.removeEventListener || node.detachEvent
 
-	      removeEvent('keypress', this.handleKeyPress.bind(this));
+	      // removeEvent('keypress', this.handleKeyPress.bind(this))
 	    }
 	  }, {
 	    key: 'handleKeyPress',
@@ -122,6 +128,22 @@ webpackJsonp([10],{
 	      if (event.key === 'Enter') {
 	        this.handleChange(event);
 	      }
+	    }
+	  }, {
+	    key: 'goToNextFormPage',
+	    value: function goToNextFormPage(event) {
+	      if (this.props.married) {
+	        browserHistory.replace('crs/b');
+	      } else {
+	        browserHistory.replace('crs/cd');
+	      }
+	      event.preventDefault();
+	    }
+	  }, {
+	    key: 'goToPreviousFormPage',
+	    value: function goToPreviousFormPage(event) {
+	      browserHistory.replace('');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'render',
@@ -196,7 +218,9 @@ webpackJsonp([10],{
 	              { id: 'experience',
 	                onChange: this.handleChange, className: 'crs-select' },
 	              this.state.workExperience.map(createList)
-	            )
+	            ),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToPreviousFormPage, value: 'Back to Home Page' }),
+	            _react2.default.createElement('input', { type: 'button', onClick: this.goToNextFormPage, value: 'Next' })
 	          )
 	        ),
 	        _react2.default.createElement(DonutChart, null)
