@@ -16,6 +16,7 @@ const HANDLE_ARRANGED_EMPLOY = 'handleArrangedEmploy'
 const HANDLE_PROV_TERRITORY_NOM = 'handleProvTerritoryNom'
 
 const initialState = {
+  CRSAScore: 0,
   status: '',
   age: 0,
   ageScore: 0,
@@ -108,6 +109,15 @@ const rootReducer = (state = initialState, action) => {
 }
 
 const reduceChange = (state, action, type) => {
+  let CRSAScore;
+  if (type.ageScore) {
+    CRSAScore = type.ageScore + state.educationScore 
+    type.CRSAScore = CRSAScore
+  }
+  if (type.educationScore) {
+    CRSAScore = type.educationScore + state.ageScore
+    type.CRSAScore = CRSAScore
+  }
   const newState = {}
   Object.assign(newState, state, type)
   return newState
@@ -132,7 +142,8 @@ const mapStateToProps = (state) => {
     spouseFirstLang: state.spouseFirstLang,
     certQualify: state.certQualify,
     arrangedEmploy: state.arrangedEmploy,
-    nominated: state.nominated
+    nominated: state.nominated,
+    CRSAScore: state.CRSAScore
   }
 }
 

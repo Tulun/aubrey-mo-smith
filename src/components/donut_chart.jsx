@@ -10,7 +10,7 @@ var DonutChart = React.createClass({
     var chart = c3.generate({
       data: {
         columns: [
-          ["CRS-A", this.props.ageScore, this.props.educationScore],
+          ["CRS-A", this.props.CRSAScore],
           ["CRS-B"],
           ["CRS-C"],
           ['CRD-D', 50]
