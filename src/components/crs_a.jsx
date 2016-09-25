@@ -35,10 +35,10 @@ class CrsA extends Component {
       ],
       secondLanguage: [
         {value: null, name: 'Select...'},
-        {value: 'crs-second-lang-1', name: 'Less than CLB 4'},
-        {value: 'crs-second-lang-2', name: 'CLB 5 or 6'},
-        {value: 'crs-second-lang-3', name: 'CLB 7 or 8'},
-        {value: 'crs-second-lang-4', name: 'CLB 9 or more'}
+        {value: null, name: 'Less than CLB 4'},
+        {value: '5or6', name: 'CLB 5 or 6'},
+        {value: '7or8', name: 'CLB 7 or 8'},
+        {value: 'more9', name: 'CLB 9 or more'}
       ],
       workExperience: [
         {value: null, name: 'Select...'},
