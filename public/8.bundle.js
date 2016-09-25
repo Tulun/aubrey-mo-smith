@@ -41,6 +41,8 @@ webpackJsonp([8],{
 	      married: [{ value: null, name: 'Select...' }, { value: true, name: 'Married or Common Law' }, { value: false, name: 'Single' }]
 	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.goToFormPage = _this.goToFormPage.bind(_this);
+
 	    return _this;
 	  }
 
@@ -63,6 +65,13 @@ webpackJsonp([8],{
 	            break;
 	        }
 	      }
+	    }
+	  }, {
+	    key: 'goToFormPage',
+	    value: function goToFormPage(event) {
+	      debugger;
+	      browserHistory.push('crs/a');
+	      event.preventDefault();
 	    }
 	  }, {
 	    key: 'render',
@@ -89,7 +98,8 @@ webpackJsonp([8],{
 	            className: 'pre-question-select',
 	            onChange: this.handleChange },
 	          this.state.married.map(createList)
-	        )
+	        ),
+	        React.createElement('input', { type: 'button', onClick: this.goToFormPage, value: 'Go To Assessment' })
 	      );
 	    }
 	  }]);
@@ -110,15 +120,11 @@ webpackJsonp([8],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jQuery = __webpack_require__(385);
-
-	var _jQuery2 = _interopRequireDefault(_jQuery);
-
-	var _c = __webpack_require__(383);
-
-	var _c2 = _interopRequireDefault(_c);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var jQuery = __webpack_require__(385);
+	var c3 = __webpack_require__(383);
+	// const C3Chart = require("C3Chart")
 
 	var _require = __webpack_require__(354);
 
@@ -129,7 +135,7 @@ webpackJsonp([8],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    var chart = _c2.default.generate({
+	    var chart = c3.generate({
 	      data: {
 	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B", this.props.CRSBScore], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
 	        type: 'donut'
