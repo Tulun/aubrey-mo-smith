@@ -21,15 +21,17 @@ const initialState = {
   age: 0,
   ageScore: 0,
   education: '',
-  educationScore: 0
+  educationScore: 0,
+  firstLang: '',
+  firstLangScore: 0
 }
 
 const calculateAgeScore = (state, value) => {
   let ageCriteria, ageScore
   if (state.status) {
-    ageCriteria = data.ageCriteria.single
-  } else { 
     ageCriteria = data.ageCriteria.married
+  } else { 
+    ageCriteria = data.ageCriteria.single
   }
   if (value >= '20' && value <= '29') {
     ageScore = ageCriteria['20to29'] 
@@ -40,19 +42,19 @@ const calculateAgeScore = (state, value) => {
   } else {
     ageScore = ageCriteria[value]
   }
-
   if (!ageScore) {
     ageScore = 0
   }
+  console.log(ageScore)
   return ageScore
 }
 
 const calculateEducationScore = (state, value) => {
   let educationCriteria, educationScore
   if (state.status) {
-    educationCriteria = data.educationCriteria.single
-  } else { 
     educationCriteria = data.educationCriteria.married
+  } else { 
+    educationCriteria = data.educationCriteria.single
   }
   educationScore = educationCriteria[value]
   if (!educationScore) {
@@ -62,7 +64,18 @@ const calculateEducationScore = (state, value) => {
 }
 
 const calculateFirstLangScore = (state, value) => {
-  debugger
+  let firstLangCriteria, firstLangScore
+  if (state.status) {
+    firstLangCriteria = data.firstLangCriteria.married
+  } else {
+    firstLangCriteria = data.firstLangCriteria.single
+  }
+
+  firstLangScore = firstLangCriteria[value]
+  if (!firstLangScore) {
+    firstLangScore = 0
+  }
+  return firstLangScore
 }
 
 const calculateSecondLangScore = (state, value) => {
@@ -109,15 +122,24 @@ const rootReducer = (state = initialState, action) => {
 }
 
 const reduceChange = (state, action, type) => {
-  let CRSAScore;
-  if (type.ageScore) {
-    CRSAScore = type.ageScore + state.educationScore 
+  console.log(type)
+  let CRSAScore
+
+  if (type.ageScore || type.ageScore === 0) {
+    CRSAScore = type.ageScore + state.educationScore + state.firstLangScore
     type.CRSAScore = CRSAScore
   }
-  if (type.educationScore) {
-    CRSAScore = type.educationScore + state.ageScore
+
+  if (type.educationScore || type.educationScore === 0) {
+    CRSAScore = type.educationScore + state.ageScore + state.firstLangScore
     type.CRSAScore = CRSAScore
   }
+
+  if (type.firstLangScore || type.firstLangScore === 0) {
+    CRSAScore = type.firstLangScore + state.ageScore + state.educationScore
+    type.CRSAScore = CRSAScore
+  }
+
   const newState = {}
   Object.assign(newState, state, type)
   return newState
@@ -135,6 +157,7 @@ const mapStateToProps = (state) => {
     education: state.education,
     educationScore: state.educationScore,
     firstLang: state.firstLang,
+    firstLangScore: state.firstLangScore,
     secLang: state.secondLang,
     experience: state.experience,
     married: state.married,

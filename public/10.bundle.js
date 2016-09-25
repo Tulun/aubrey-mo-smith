@@ -40,7 +40,7 @@ webpackJsonp([10],{
 
 	    _this.state = {
 	      schooling: [{ value: null, name: 'Select...' }, { value: 'lessHighSchool', name: 'Less than secondary' }, { value: 'highSchool', name: 'Secondary diploma' }, { value: 'oneYearPS', name: 'One-year degree, diploma or certificate from a university, college,' + 'trade or technical school, or other institute' }, { value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'phd', name: 'Doctoral level university degree (Ph.D.)' }],
-	      firstLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-first-lang-1', name: 'Less than CLB 4' }, { value: 'crs-first-lang-2', name: 'CLB 4 or 5' }, { value: 'crs-first-lang-3', name: 'CLB 6' }, { value: 'crs-first-lang-4', name: 'CLB 7' }, { value: 'crs-first-lang-5', name: 'CLB 8' }, { value: 'crs-first-lang-6', name: 'CLB 9' }, { value: 'crs-first-lang-7', name: 'CLB 10 or more' }],
+	      firstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than CLB 4' }, { value: '4or5', name: 'CLB 4 or 5' }, { value: '6', name: 'CLB 6' }, { value: '7', name: 'CLB 7' }, { value: '8', name: 'CLB 8' }, { value: '9', name: 'CLB 9' }, { value: 'more10', name: 'CLB 10 or more' }],
 	      secondLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-second-lang-1', name: 'Less than CLB 4' }, { value: 'crs-second-lang-2', name: 'CLB 5 or 6' }, { value: 'crs-second-lang-3', name: 'CLB 7 or 8' }, { value: 'crs-second-lang-4', name: 'CLB 9 or more' }],
 	      workExperience: [{ value: null, name: 'Select...' }, { value: 'crs-work-experience-1', name: 'Less than 1 year' }, { value: 'crs-work-experience-2', name: '1 year' }, { value: 'crs-work-experience-3', name: '2 years' }, { value: 'crs-work-experience-4', name: '3 years' }, { value: 'crs-work-experience-5', name: '4 years' }, { value: 'crs-work-experience-6', name: '5 or more years' }],
 	      age: 0,
@@ -77,22 +77,43 @@ webpackJsonp([10],{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'age':
-	          this.props.handleAge(value);
-	          break;
-	        case 'education':
-	          this.props.handleEducation(value);
-	          break;
-	        case 'first-lang':
-	          this.props.handleFirstLang(value);
-	          break;
-	        case 'second-lang':
-	          this.props.handleSecondLang(value);
-	          break;
-	        case 'experience':
-	          this.props.handleExperience(value);
-	          break;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'age':
+	            this.props.handleAge(value);
+	            break;
+	          case 'education':
+	            this.props.handleEducation(value);
+	            break;
+	          case 'first-lang':
+	            this.props.handleFirstLang(value);
+	            break;
+	          case 'second-lang':
+	            this.props.handleSecondLang(value);
+	            break;
+	          case 'experience':
+	            this.props.handleExperience(value);
+	            break;
+	        }
+	      } else {
+	        switch (event.target.id) {
+	          case 'age':
+	            this.props.handleAge(value);
+	            break;
+	          case 'education':
+	            this.props.handleEducation(value);
+	            break;
+	          case 'first-lang':
+	            this.props.handleFirstLang(value);
+	            break;
+	          case 'second-lang':
+	            this.props.handleSecondLang(value);
+	            break;
+	          case 'experience':
+	            this.props.handleExperience(value);
+	            break;
+	        }
 	      }
 	    }
 	  }, {

@@ -25,13 +25,13 @@ class CrsA extends Component {
       ],
       firstLanguage: [
         {value: null, name: 'Select...'},
-        {value: 'crs-first-lang-1', name: 'Less than CLB 4'},
-        {value: 'crs-first-lang-2', name: 'CLB 4 or 5'},
-        {value: 'crs-first-lang-3', name: 'CLB 6'},
-        {value: 'crs-first-lang-4', name: 'CLB 7'},
-        {value: 'crs-first-lang-5', name: 'CLB 8'},
-        {value: 'crs-first-lang-6', name: 'CLB 9'},
-        {value: 'crs-first-lang-7', name: 'CLB 10 or more'}
+        {value: null, name: 'Less than CLB 4'},
+        {value: '4or5', name: 'CLB 4 or 5'},
+        {value: '6', name: 'CLB 6'},
+        {value: '7', name: 'CLB 7'},
+        {value: '8', name: 'CLB 8'},
+        {value: '9', name: 'CLB 9'},
+        {value: 'more10', name: 'CLB 10 or more'}
       ],
       secondLanguage: [
         {value: null, name: 'Select...'},
@@ -76,23 +76,44 @@ class CrsA extends Component {
   }
 
   handleChange (event) {
-    const value = event.target.value 
-    switch (event.target.id) {
-      case 'age':
-        this.props.handleAge(value)
-        break
-      case 'education':
-        this.props.handleEducation(value)
-        break
-      case 'first-lang':
-        this.props.handleFirstLang(value)
-        break
-      case 'second-lang':
-        this.props.handleSecondLang(value)
-        break
-      case 'experience':
-        this.props.handleExperience(value)
-        break
+    let value = event.target.value
+    if (value === 'Select...') {
+      value = null
+      switch (event.target.id) {
+        case 'age':
+          this.props.handleAge(value)
+          break
+        case 'education':
+          this.props.handleEducation(value)
+          break
+        case 'first-lang':
+          this.props.handleFirstLang(value)
+          break
+        case 'second-lang':
+          this.props.handleSecondLang(value)
+          break
+        case 'experience':
+          this.props.handleExperience(value)
+          break
+      } 
+    } else {
+      switch (event.target.id) {
+        case 'age':
+          this.props.handleAge(value)
+          break
+        case 'education':
+          this.props.handleEducation(value)
+          break
+        case 'first-lang':
+          this.props.handleFirstLang(value)
+          break
+        case 'second-lang':
+          this.props.handleSecondLang(value)
+          break
+        case 'experience':
+          this.props.handleExperience(value)
+          break
+      }
     }
   }
 

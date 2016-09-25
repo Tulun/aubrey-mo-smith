@@ -54,12 +54,12 @@
         "bachelor": 112,
         "bachelorPG": 119,
         "masterProfBatch": 126,
-        "phd": 146
+        "phd": 140
     }
   }, 
   "firstLangCriteria": {
     "married": {
-        "4": 6,
+        "4or5": 6,
         "5": 6,
         "6": 8,
         "7": 16,
@@ -68,7 +68,7 @@
         "more10": 32
     },
     "single": {
-        "4": 6,
+        "4or5": 6,
         "5": 6,
         "6": 9,
         "7": 17,
