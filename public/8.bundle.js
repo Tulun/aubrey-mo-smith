@@ -123,10 +123,9 @@ webpackJsonp([8],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    console.log(this.props.age);
 	    var chart = _c2.default.generate({
 	      data: {
-	        columns: [["CRS-A", 25, 50, 50, this.props.age], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.ageScore], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },

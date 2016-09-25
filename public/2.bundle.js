@@ -1,8 +1,11 @@
 webpackJsonp([2],{
 
-/***/ 380:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 387:
+/***/ function(module, exports) {
 
+<<<<<<< HEAD
+	"use strict";
+=======
 	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2264,6 +2267,7 @@ webpackJsonp([2],{
 	// and CommonJS for browser emulators (#13566)
 	if(!noGlobal){window.jQuery=window.$=jQuery;}return jQuery;});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(160)(module)))
+>>>>>>> bacf7a49345439e88447e3a960982565eeb9cfac
 
 /***/ }
 

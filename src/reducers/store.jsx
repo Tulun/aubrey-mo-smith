@@ -1,5 +1,6 @@
 const redux = require('redux')
 const reactRedux = require('react-redux')
+const data = require('../../public/data.json')
 
 // These are constants actions for the cases in props to be passed to Redux
 const HANDLE_AGE = 'handleAge'
@@ -15,13 +16,40 @@ const HANDLE_ARRANGED_EMPLOY = 'handleArrangedEmploy'
 const HANDLE_PROV_TERRITORY_NOM = 'handleProvTerritoryNom'
 
 const initialState = {
-  age: ''
+  status: '',
+  age: 0,
+  ageScore: 0
+}
+
+const calculateAgeScore = (state, value) => {
+  let ageCriteria, ageScore
+  if (state.status) {
+    ageCriteria = data.ageCriteria.single
+  } else { 
+    ageCriteria = data.ageCriteria.married
+  }
+  if (value >= '20' && value <= '29') {
+    ageScore = ageCriteria['20to29'] 
+  } else if (value === '19' || value === '30') {
+    ageScore = ageCriteria['19or30'] 
+  } else if (value === '18' || value === '31') {
+    ageScore = ageCriteria['18or31']
+  } else {
+    ageScore = ageCriteria[value]
+  }
+
+  if (!ageScore) {
+    ageScore = 0
+  }
+  return ageScore
 }
 
 const rootReducer = (state = initialState, action) => {
+  
   switch (action.type) {
     case HANDLE_AGE:
-      return reduceChange(state, action, {age: action.value})
+      const ageScore = calculateAgeScore(state, action.value)
+      return reduceChange(state, action, {age: action.value, ageScore: ageScore})
     case HANDLE_EDUCATION:
       return reduceChange(state, action, {education: action.value})
     case HANDLE_FIRST_LANG:
@@ -59,10 +87,12 @@ const store = redux.createStore(rootReducer, initialState, redux.compose(
 
 const mapStateToProps = (state) => {
   return {
+    status: state.status,
     age: state.age,
+    ageScore: state.ageScore,
     education: state.education,
-    firstLangProf: state.firstLang,
-    secLangProf: state.secondLang,
+    firstLang: state.firstLang,
+    secLang: state.secondLang,
     experience: state.experience,
     married: state.married,
     spouseEducation: state.spouseEducation,

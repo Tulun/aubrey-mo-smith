@@ -1,8 +1,11 @@
 webpackJsonp([5],{
 
-/***/ 382:
-/***/ function(module, exports, __webpack_require__) {
+/***/ 389:
+/***/ function(module, exports) {
 
+<<<<<<< HEAD
+	"use strict";
+=======
 	'use strict';
 
 	var _react = __webpack_require__(1);
@@ -2319,6 +2322,7 @@ webpackJsonp([5],{
 	}(_react.Component);
 
 	module.exports = connector(CrsB);
+>>>>>>> bacf7a49345439e88447e3a960982565eeb9cfac
 
 /***/ }
 
