@@ -48,10 +48,20 @@ webpackJsonp([8],{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'married':
-	          this.props.handleMaritalStatus(value);
-	          break;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'married':
+	            this.props.handleMaritalStatus(value);
+	            break;
+	        }
+	      } else {
+	        value = value == 'true';
+	        switch (event.target.id) {
+	          case 'married':
+	            this.props.handleMaritalStatus(value);
+	            break;
+	        }
 	      }
 	    }
 	  }, {

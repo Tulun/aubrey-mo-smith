@@ -18,11 +18,21 @@ class Landing extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange(event) {
-    const value = event.target.value;
-    switch (event.target.id) {
-      case 'married':
-        this.props.handleMaritalStatus(value)
-        break
+    let value = event.target.value
+    if (value === 'Select...') {
+      value = null
+      switch (event.target.id) {
+        case 'married':
+          this.props.handleMaritalStatus(value)
+          break
+      } 
+    } else {
+      value = value == 'true'
+      switch (event.target.id) {
+        case 'married':
+          this.props.handleMaritalStatus(value)
+          break
+      }
     }
   }
   render () {
