@@ -24,9 +24,11 @@ webpackJsonp([5],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
+	    var cols = [["CRSA Score: ", this.props.CRSAScore], ["CRSB Score: ", this.props.CRSBScore], ["CRSC Score: ", this.props.CRSCScore], ['CRSD Score: ', this.props.CRSDScore]];
+	    cols[0][0] = cols[0][0] + cols[0][1], cols[1][0] = cols[1][0] + cols[1][1], cols[2][0] = cols[2][0] + cols[2][1], cols[3][0] = cols[3][0] + cols[3][1];
 	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
+	        columns: cols,
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -63,7 +65,17 @@ webpackJsonp([5],{
 	  },
 
 	  render: function render() {
-	    return _react2.default.createElement('div', { id: 'chart' });
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { id: 'chart' }),
+	      _react2.default.createElement(
+	        'p',
+	        { className: 'total-score' },
+	        'Total Score: ',
+	        this.props.CRSAScore + this.props.CRSBScore + this.props.CRSCScore + this.props.CRSDScore
+	      )
+	    );
 	  }
 	});
 
