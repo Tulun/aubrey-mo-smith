@@ -159,36 +159,36 @@ const reduceChange = (state, action, type) => {
   if (type.educationScore || type.educationScore === 0) {
     CRSAScore = type.educationScore + state.ageScore + state.firstLangScore + state.secondLangScore + state.experienceScore
     if (state.status) {
-      type.CRSAScore = Math.min(CRSAScore, 100)
+      type.CRSAScore = Math.min(CRSAScore, 460)
     } else {
-      type.CRSAScore = Math.min(CRSAScore, 110)
+      type.CRSAScore = Math.min(CRSAScore, 500)
     }
   }
 
   if (type.firstLangScore || type.firstLangScore === 0) {
     CRSAScore = type.firstLangScore + state.ageScore + state.educationScore + state.secondLangScore + state.experienceScore
     if (state.status) {
-      type.CRSAScore = Math.min(CRSAScore, 100)
+      type.CRSAScore = Math.min(CRSAScore, 460)
     } else {
-      type.CRSAScore = Math.min(CRSAScore, 110)
+      type.CRSAScore = Math.min(CRSAScore, 500)
     }
   }
 
   if (type.secondLangScore || type.secondLangScore === 0) {
     CRSAScore = type.secondLangScore + state.ageScore + state.educationScore + state.firstLangScore + state.experienceScore
     if (state.status) {
-      type.CRSAScore = Math.min(CRSAScore, 100)
+      type.CRSAScore = Math.min(CRSAScore, 460)
     } else {
-      type.CRSAScore = Math.min(CRSAScore, 110)
+      type.CRSAScore = Math.min(CRSAScore, 500)
     }
   }
 
   if (type.experienceScore || type.experienceScore === 0) {
     CRSAScore = type.experienceScore + state.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore
     if (state.status) {
-      type.CRSAScore = Math.min(CRSAScore, 100)
+      type.CRSAScore = Math.min(CRSAScore, 460)
     } else {
-      type.CRSAScore = Math.min(CRSAScore, 110)
+      type.CRSAScore = Math.min(CRSAScore, 500)
     }
   }
 
