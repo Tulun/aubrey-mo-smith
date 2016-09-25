@@ -19,6 +19,7 @@ const initialState = {
   CRSAScore: 0,
   CRSBScore: 0,
   CRSCScore: 0,
+  CRSDScore: 0,
   status: '',
   age: 0,
   ageScore: 0,
@@ -35,6 +36,12 @@ const initialState = {
   spouseFirstLang: '',
   spouseFirstLangScore: 0, 
   educationLanguageBonus: 0,
+  certQualify: '',
+  certQualifyScore: 0,
+  arrangedEmploy: '',
+  arrangedEmployScore: 0,
+  provTerritoryNom: '',
+  provTerritoryNomScore: 0,
   experienceLanguageBonus: 0  
 }
 
@@ -137,7 +144,6 @@ const calculateSpouseFirstLangScore = (state, value) => {
   return spouseFirstLangScore
 }
 
-
 const rootReducer = (state = initialState, action) => {
   
   switch (action.type) {
@@ -176,7 +182,7 @@ const rootReducer = (state = initialState, action) => {
 }
 
 const reduceChange = (state, action, type) => {
-  let CRSAScore, CRSBScore, CRSCScore, CRSDScore, educationLanguageBonus
+  let CRSAScore, CRSBScore, CRSCScore, CRSDScore, educationLanguageBonus, experienceLanguageBonus, certQualifyScore
   console.log(type)
   if (type.ageScore || type.ageScore === 0) {
     CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore + state.experienceScore
@@ -308,21 +314,59 @@ const reduceChange = (state, action, type) => {
   if ((type.educationScore >= 119 && state.experienceScore >= 35 && state.experienceScore < 46) ||
     (state.educationScore >= 119 && type.experienceScore >= 35 && type.experienceScore < 46)) {
     type.experienceLanguageBonus = 25
-    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus + state.certQualifyScore
     type.CRSCScore = Math.min(CRSCScore, 100)
   }
 
   if ((type.educationScore >= 84 && type.educationScore < 120 && state.experienceScore >= 126) ||
     (state.educationScore >= 84 && state.educationScore < 120 && type.experienceScore >= 126)) {
     type.experienceLanguageBonus = 25
-    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus + state.certQualifyScore
     type.CRSCScore = Math.min(CRSCScore, 100) 
   }
 
   if ((type.educationScore >= 119 && state.experienceScore >= 46 )) {
     type.experienceLanguageBonus = 50
-    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus
+    CRSCScore = type.experienceLanguageBonus + state.educationLanguageBonus + state.certQualifyScore
     type.CRSCScore = Math.min(CRSCScore, 100)   
+  }
+
+  if ((type.certQualify && state.firstLangScore >=6 && state.secondLangScore >= 1 && (state.firstLangScore < 16 || state.secondLangScore < 3))) {
+    type.certQualifyScore = 25
+    CRSCScore = type.certQualifyScore + state.educationLanguageBonus + state.experienceLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  if (!type.certQualify) {
+    type.certQualifyScore = 0
+    CRSCScore = type.certQualifyScore + state.educationLanguageBonus + state.experienceLanguageBonus
+    type.CRSCScore = Math.min(CRSCScore, 100)
+  }
+
+  // This is for CRSCScore D
+
+  if (type.arrangedEmploy === true) {
+    type.arrangedEmployScore = 600
+    CRSDScore = type.arrangedEmployScore + state.provTerritoryNomScore
+    type.CRSDScore = Math.min(CRSDScore, 600)
+  }
+
+  if (type.arrangedEmploy === false || type.arrangedEmploy === null) {
+    type.arrangedEmployScore = 0
+    CRSDScore = type.arrangedEmployScore + state.provTerritoryNomScore
+    type.CRSDScore = Math.min(CRSDScore, 600)
+  }
+
+  if (type.provTerritoryNom === true) {
+    type.provTerritoryNomScore = 600
+    CRSDScore = state.arrangedEmployScore + type.provTerritoryNomScore
+    type.CRSDScore = Math.min(CRSDScore, 600)
+  }
+
+  if (type.provTerritoryNom === false || type.provTerritoryNom === null) {
+    type.provTerritoryNomScore = 0
+    CRSDScore = state.arrangedEmployScore + type.provTerritoryNomScore
+    type.CRSDScore = Math.min(CRSDScore, 600)
   }
 
   console.log('type is :', type)
@@ -358,9 +402,12 @@ const mapStateToProps = (state) => {
     nominated: state.nominated,
     educationLanguageBonus: state.educationLanguageBonus,
     experienceLanguageBonus: state.experienceLanguageBonus,
+    certQualify: state.certQualify,
+    certQualifyScore: state.certQualifyScore,
     CRSAScore: state.CRSAScore,
     CRSBScore: state.CRSBScore,
-    CRSCScore: state.CRSCScore
+    CRSCScore: state.CRSCScore,
+    CRSDScore: state.CRSDScore
   }
 }
 
