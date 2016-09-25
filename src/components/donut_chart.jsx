@@ -11,9 +11,9 @@ var DonutChart = React.createClass({
       data: {
         columns: [
           ["CRS-A", this.props.ageScore],
-          ["CRS-B", 50, 100, 40],
-          ["CRS-C", 100, 200],
-          ['CRD-D', 50]
+          ["CRS-B"],
+          ["CRS-C"],
+          ['CRD-D']
         ],
         type : 'donut'
         // onclick: function (d, i) { console.log("onclick", d, i); },
