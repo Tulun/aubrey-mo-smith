@@ -1,4 +1,105 @@
-webpackJsonp([6],{
+webpackJsonp([8],{
+
+/***/ 380:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var _require = __webpack_require__(291);
+
+	var browserHistory = _require.browserHistory;
+
+	var _require2 = __webpack_require__(291);
+
+	var Link = _require2.Link;
+
+	var _require3 = __webpack_require__(354);
+
+	var connector = _require3.connector;
+
+	var DonutChart = __webpack_require__(382);
+
+	var Landing = function (_React$Component) {
+	  _inherits(Landing, _React$Component);
+
+	  function Landing(props) {
+	    _classCallCheck(this, Landing);
+
+	    var _this = _possibleConstructorReturn(this, (Landing.__proto__ || Object.getPrototypeOf(Landing)).call(this, props));
+
+	    _this.state = {
+	      married: [{ value: null, name: 'Select...' }, { value: true, name: 'Married or Common Law' }, { value: false, name: 'Single' }]
+	    };
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Landing, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      var value = event.target.value;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'married':
+	            this.props.handleMaritalStatus(value);
+	            break;
+	        }
+	      } else {
+	        value = value == 'true';
+	        switch (event.target.id) {
+	          case 'married':
+	            this.props.handleMaritalStatus(value);
+	            break;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var createList = function createList(item, key) {
+	        return React.createElement(
+	          'option',
+	          { className: 'crs-option', key: key, value: item.value },
+	          item.name
+	        );
+	      };
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'p',
+	          { className: 'pre-question' },
+	          ' Are you married or common law, or single?'
+	        ),
+	        React.createElement(
+	          'select',
+	          {
+	            id: 'married',
+	            className: 'pre-question-select',
+	            onChange: this.handleChange },
+	          this.state.married.map(createList)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Landing;
+	}(React.Component);
+
+	module.exports = connector(Landing);
+
+/***/ },
 
 /***/ 382:
 /***/ function(module, exports, __webpack_require__) {
@@ -32,10 +133,9 @@ webpackJsonp([6],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    console.log(this.props.age);
 	    var chart = _c2.default.generate({
 	      data: {
-	        columns: [["CRS-A", 25, 50, 50, this.props.age], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.ageScore], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -2173,154 +2273,6 @@ webpackJsonp([6],{
 	// and CommonJS for browser emulators (#13566)
 	if(!noGlobal){window.jQuery=window.$=jQuery;}return jQuery;});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(160)(module)))
-
-/***/ },
-
-/***/ 388:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(158);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This component is for Skill transferability factors. 
-	// Note: The maximum # of points for this is 100 points.
-
-	var DonutChart = __webpack_require__(382);
-
-	var _require = __webpack_require__(354);
-
-	var connector = _require.connector;
-
-	var CrsC = function (_Component) {
-	  _inherits(CrsC, _Component);
-
-	  function CrsC(props) {
-	    _classCallCheck(this, CrsC);
-
-	    var _this = _possibleConstructorReturn(this, (CrsC.__proto__ || Object.getPrototypeOf(CrsC)).call(this, props));
-
-	    if (_this.props.married) {
-	      _this.state = {
-	        spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
-	        spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
-	      };
-	    }
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(CrsC, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
-
-	      var addEvent = node.addEventListener || node.attachEvent;
-
-	      addEvent('keypress', this.handleKeyPress, false);
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      var removeEvent = node.removeEventListener || node.detachEvent;
-
-	      removeEvent('keypress', this.handleKeyPress);
-	    }
-	  }, {
-	    key: 'handleKeyPress',
-	    value: function handleKeyPress(event) {
-	      if (event.keyCode === 13) {
-	        event.preventDefault();
-	      }
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'spouse-education':
-	          this.props.handleSpouseEducation(value);
-	          break;
-	        case 'spouse-first-lang':
-	          this.props.handleSpouseFirstLang(value);
-	          break;
-	      }
-	    }
-	  }, {
-	    key: 'checkEnter',
-	    value: function checkEnter(event) {
-	      if (event.key === 'Enter') {
-	        this.handleChange(event);
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var createList = function createList(item, key) {
-	        return _react2.default.createElement(
-	          'option',
-	          { className: 'crs-option', key: key, value: item.value },
-	          item.name
-	        );
-	      };
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'crs-b' },
-	          _react2.default.createElement(
-	            'form',
-	            { ref: 'crsbform', className: 'crs-b-form' },
-	            _react2.default.createElement(
-	              'p',
-	              { className: 'crs-b-question' },
-	              'What\'s your spouse or common law\'s level of education?'
-	            ),
-	            _react2.default.createElement(
-	              'select',
-	              { id: 'spouse-education',
-	                onChange: this.handleChange,
-	                className: 'crs-select' },
-	              this.state.spouseSchooling.map(createList)
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              { className: 'crs-b-question' },
-	              'What\'s your spouse or common law\'s first official language profiency?'
-	            ),
-	            _react2.default.createElement(
-	              'select',
-	              { id: 'spouse-first-lang',
-	                onChange: this.handleChange, className: 'crs-select' },
-	              this.state.spouseFirstLanguage.map(createList)
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(DonutChart, null)
-	      );
-	    }
-	  }]);
-
-	  return CrsC;
-	}(_react.Component);
-
-	module.exports = connector(CrsC);
 
 /***/ }
 

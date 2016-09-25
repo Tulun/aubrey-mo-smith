@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([12],{
 
 /***/ 382:
 /***/ function(module, exports, __webpack_require__) {
@@ -32,10 +32,9 @@ webpackJsonp([6],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    console.log(this.props.age);
 	    var chart = _c2.default.generate({
 	      data: {
-	        columns: [["CRS-A", 25, 50, 50, this.props.age], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.ageScore], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -2176,7 +2175,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 388:
+/***/ 391:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2206,29 +2205,27 @@ webpackJsonp([6],{
 
 	var connector = _require.connector;
 
-	var CrsC = function (_Component) {
-	  _inherits(CrsC, _Component);
+	var CrsCD = function (_Component) {
+	  _inherits(CrsCD, _Component);
 
-	  function CrsC(props) {
-	    _classCallCheck(this, CrsC);
+	  function CrsCD(props) {
+	    _classCallCheck(this, CrsCD);
 
-	    var _this = _possibleConstructorReturn(this, (CrsC.__proto__ || Object.getPrototypeOf(CrsC)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CrsCD.__proto__ || Object.getPrototypeOf(CrsCD)).call(this, props));
 
-	    if (_this.props.married) {
-	      _this.state = {
-	        spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
-	        spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
-	      };
-	    }
+	    _this.state = {
+	      yes_no: [{ value: null, name: 'Select...' }, { value: true, name: 'Yes' }, { value: false, name: 'No' }]
+	    };
+
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(CrsC, [{
+	  _createClass(CrsCD, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
+	      var node = _reactDom2.default.findDOMNode(this.refs.crscdform);
 
 	      var addEvent = node.addEventListener || node.attachEvent;
 
@@ -2252,13 +2249,32 @@ webpackJsonp([6],{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'spouse-education':
-	          this.props.handleSpouseEducation(value);
-	          break;
-	        case 'spouse-first-lang':
-	          this.props.handleSpouseFirstLang(value);
-	          break;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'cert-qualify':
+	            this.props.handleCertQualify(value);
+	            break;
+	          case 'arranged-employ':
+	            this.props.handleArrangedEmploy(value);
+	            break;
+	          case 'prov-territory-nom':
+	            this.props.handleProvTerritoryNom(value);
+	            break;
+	        }
+	      } else {
+	        value = value == 'true';
+	        switch (event.target.id) {
+	          case 'cert-qualify':
+	            this.props.handleCertQualify(value);
+	            break;
+	          case 'arranged-employ':
+	            this.props.handleArrangedEmploy(value);
+	            break;
+	          case 'prov-territory-nom':
+	            this.props.handleProvTerritoryNom(value);
+	            break;
+	        }
 	      }
 	    }
 	  }, {
@@ -2283,32 +2299,43 @@ webpackJsonp([6],{
 	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'crs-b' },
+	          { className: 'crs-c-d' },
 	          _react2.default.createElement(
 	            'form',
-	            { ref: 'crsbform', className: 'crs-b-form' },
+	            { ref: 'crscdform', className: 'crs-b-form' },
 	            _react2.default.createElement(
 	              'p',
-	              { className: 'crs-b-question' },
-	              'What\'s your spouse or common law\'s level of education?'
+	              { className: 'crs-cd-question' },
+	              'Do you have a certifcate of qualification?'
 	            ),
 	            _react2.default.createElement(
 	              'select',
-	              { id: 'spouse-education',
+	              { id: 'cert-qualify',
 	                onChange: this.handleChange,
 	                className: 'crs-select' },
-	              this.state.spouseSchooling.map(createList)
+	              this.state.yes_no.map(createList)
 	            ),
 	            _react2.default.createElement(
 	              'p',
-	              { className: 'crs-b-question' },
-	              'What\'s your spouse or common law\'s first official language profiency?'
+	              { className: 'crs-cd-question' },
+	              'Do you have arranged employment? (positive Labour Market Impact Assessment required)'
 	            ),
 	            _react2.default.createElement(
 	              'select',
-	              { id: 'spouse-first-lang',
+	              { id: 'arranged-employ',
 	                onChange: this.handleChange, className: 'crs-select' },
-	              this.state.spouseFirstLanguage.map(createList)
+	              this.state.yes_no.map(createList)
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              { className: 'crs-cd-question' },
+	              'Do you have provincial or territorial nomination?'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'prov-territory-nom',
+	                onChange: this.handleChange, className: 'crs-select' },
+	              this.state.yes_no.map(createList)
 	            )
 	          )
 	        ),
@@ -2317,10 +2344,10 @@ webpackJsonp([6],{
 	    }
 	  }]);
 
-	  return CrsC;
+	  return CrsCD;
 	}(_react.Component);
 
-	module.exports = connector(CrsC);
+	module.exports = connector(CrsCD);
 
 /***/ }
 

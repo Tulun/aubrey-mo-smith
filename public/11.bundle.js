@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([11],{
 
 /***/ 382:
 /***/ function(module, exports, __webpack_require__) {
@@ -32,10 +32,9 @@ webpackJsonp([6],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    console.log(this.props.age);
 	    var chart = _c2.default.generate({
 	      data: {
-	        columns: [["CRS-A", 25, 50, 50, this.props.age], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.ageScore], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -2176,7 +2175,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 388:
+/***/ 387:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2197,8 +2196,8 @@ webpackJsonp([6],{
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This component is for Skill transferability factors. 
-	// Note: The maximum # of points for this is 100 points.
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // This component is for Spousal factors of the calculator. 
+	// Note: The maximum # of points for this (A) and spousal (B) is 500 points.
 
 	var DonutChart = __webpack_require__(382);
 
@@ -2206,26 +2205,24 @@ webpackJsonp([6],{
 
 	var connector = _require.connector;
 
-	var CrsC = function (_Component) {
-	  _inherits(CrsC, _Component);
+	var CrsB = function (_Component) {
+	  _inherits(CrsB, _Component);
 
-	  function CrsC(props) {
-	    _classCallCheck(this, CrsC);
+	  function CrsB(props) {
+	    _classCallCheck(this, CrsB);
 
-	    var _this = _possibleConstructorReturn(this, (CrsC.__proto__ || Object.getPrototypeOf(CrsC)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (CrsB.__proto__ || Object.getPrototypeOf(CrsB)).call(this, props));
 
-	    if (_this.props.married) {
-	      _this.state = {
-	        spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
-	        spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
-	      };
-	    }
+	    _this.state = {
+	      spouseSchooling: [{ value: null, name: 'Select...' }, { value: 'no-high-school', name: 'Less than secondary' }, { value: 'high-school', name: 'Secondary School (high school graduation)' }, { value: 'one-year-ps', name: 'One-year program at a university, college, trade or technical school, or other institute ' }, { value: 'two-year-ps', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor-deg', name: "Bachelor's degree OR a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'two-degs', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masters', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'PHD', name: 'Doctoral level university degree (Ph.D.)' }],
+	      spouseFirstLanguage: [{ value: null, name: 'Select...' }, { value: 'CLB-4-or-less', name: 'CLB 4 or less' }, { value: 'CLB-4-or-5', name: 'CLB 5 or 6' }, { value: 'CLB-7-or-8', name: 'CLB 7 or 8' }, { value: 'CLB-9-or-more', name: 'CLB 9 or more' }]
+	    };
 	    _this.handleChange = _this.handleChange.bind(_this);
 	    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(CrsC, [{
+	  _createClass(CrsB, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var node = _reactDom2.default.findDOMNode(this.refs.crsbform);
@@ -2317,10 +2314,10 @@ webpackJsonp([6],{
 	    }
 	  }]);
 
-	  return CrsC;
+	  return CrsB;
 	}(_react.Component);
 
-	module.exports = connector(CrsC);
+	module.exports = connector(CrsB);
 
 /***/ }
 

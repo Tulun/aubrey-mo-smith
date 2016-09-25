@@ -2,6 +2,7 @@ const redux = require('redux')
 const reactRedux = require('react-redux')
 const data = require('../../public/data.json')
 
+// These are constants actions for the cases in props to be passed to Redux
 const HANDLE_AGE = 'handleAge'
 const HANDLE_EDUCATION = 'handleEducation'
 const HANDLE_FIRST_LANG = 'handleFirstLang'
@@ -10,12 +11,15 @@ const HANDLE_EXPERIENCE = 'handleExperience'
 const HANDLE_MARITAL_STATUS = 'handleMaritalStatus'
 const HANDLE_SPOUSE_EDUCATION = 'handleSpouseEducation'
 const HANDLE_SPOUSE_FIRST_LANG = 'handleSpouseFirstLang'
-
+const HANDLE_CERT_QUALIFY = 'handleCertQualify'
+const HANDLE_ARRANGED_EMPLOY = 'handleArrangedEmploy'
+const HANDLE_PROV_TERRITORY_NOM = 'handleProvTerritoryNom'
 
 const initialState = {
   status: '',
   age: 0,
   ageScore: 0,
+  education: '',
   educationScore: 0
 }
 
@@ -92,6 +96,12 @@ const rootReducer = (state = initialState, action) => {
       return reduceChange(state, action, {spouseEducation: action.value})
     case HANDLE_SPOUSE_FIRST_LANG:
       return reduceChange(state, action, {spouseFirstLang: action.value})
+    case HANDLE_CERT_QUALIFY:
+      return reduceChange(state, action, {certQualify: action.value})
+    case HANDLE_ARRANGED_EMPLOY:
+      return reduceChange(state, action, {arrangedEmploy: action.value})
+    case HANDLE_PROV_TERRITORY_NOM:
+      return reduceChange(state, action, {provTerritoryNom: action.value})
     default:
       return state
   }
@@ -119,7 +129,10 @@ const mapStateToProps = (state) => {
     experience: state.experience,
     married: state.married,
     spouseEducation: state.spouseEducation,
-    spouseFirstLang: state.spouseFirstLang
+    spouseFirstLang: state.spouseFirstLang,
+    certQualify: state.certQualify,
+    arrangedEmploy: state.arrangedEmploy,
+    nominated: state.nominated
   }
 }
 
@@ -148,6 +161,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleSpouseFirstLang (spouseFirstLang) {
       dispatch({type: HANDLE_SPOUSE_FIRST_LANG, value: spouseFirstLang})
+    },
+    handleCertQualify (qualified) {
+      dispatch({type: HANDLE_CERT_QUALIFY, value: qualified})
+    },
+    handleArrangedEmploy (arrangedEmploy) {
+      dispatch({type: HANDLE_ARRANGED_EMPLOY, value: arrangedEmploy})
+    },
+    handleProvTerritoryNom (nominated) {
+      dispatch({type: HANDLE_PROV_TERRITORY_NOM, value: nominated})
     }
   }
 }

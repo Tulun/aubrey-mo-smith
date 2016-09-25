@@ -1,4 +1,4 @@
-// This component is for Core / Human capital factors of the calculator. 
+// This component is for Spousal factors of the calculator. 
 // Note: The maximum # of points for this (A) and spousal (B) is 500 points.
 
 import React, { Component } from 'react'
