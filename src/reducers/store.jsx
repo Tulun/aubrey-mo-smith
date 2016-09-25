@@ -25,7 +25,9 @@ const initialState = {
   firstLang: '',
   firstLangScore: 0,
   secondLang: '',
-  secondLangScore: 0
+  secondLangScore: 0,
+  experience: '',
+  experienceScore: 0
 }
 
 const calculateAgeScore = (state, value) => {
@@ -92,7 +94,18 @@ const calculateSecondLangScore = (state, value) => {
 }
 
 const calculateExperienceLangScore = (state, value) => {
-  debugger
+  let cdnWorkCriteria, cdnWorkLangScore
+  if (state.status) {
+    cdnWorkCriteria = data.cdnWorkCriteria.married
+  } else {
+    cdnWorkCriteria = data.cdnWorkCriteria.single
+  }
+
+  cdnWorkLangScore = cdnWorkCriteria[value]
+  if (!cdnWorkLangScore) {
+    cdnWorkLangScore = 0
+  }
+  return cdnWorkLangScore
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -135,7 +148,7 @@ const reduceChange = (state, action, type) => {
   let CRSAScore
 
   if (type.ageScore || type.ageScore === 0) {
-    CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore
+    CRSAScore = type.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore + state.experienceScore
     if (state.status) {
       type.CRSAScore = Math.min(CRSAScore, 100)
     } else {
@@ -144,7 +157,7 @@ const reduceChange = (state, action, type) => {
   }
 
   if (type.educationScore || type.educationScore === 0) {
-    CRSAScore = type.educationScore + state.ageScore + state.firstLangScore + state.secondLangScore
+    CRSAScore = type.educationScore + state.ageScore + state.firstLangScore + state.secondLangScore + state.experienceScore
     if (state.status) {
       type.CRSAScore = Math.min(CRSAScore, 100)
     } else {
@@ -153,7 +166,7 @@ const reduceChange = (state, action, type) => {
   }
 
   if (type.firstLangScore || type.firstLangScore === 0) {
-    CRSAScore = type.firstLangScore + state.ageScore + state.educationScore + state.secondLangScore
+    CRSAScore = type.firstLangScore + state.ageScore + state.educationScore + state.secondLangScore + state.experienceScore
     if (state.status) {
       type.CRSAScore = Math.min(CRSAScore, 100)
     } else {
@@ -162,7 +175,16 @@ const reduceChange = (state, action, type) => {
   }
 
   if (type.secondLangScore || type.secondLangScore === 0) {
-    CRSAScore = type.secondLangScore + state.ageScore + state.educationScore + state.firstLangScore
+    CRSAScore = type.secondLangScore + state.ageScore + state.educationScore + state.firstLangScore + state.experienceScore
+    if (state.status) {
+      type.CRSAScore = Math.min(CRSAScore, 100)
+    } else {
+      type.CRSAScore = Math.min(CRSAScore, 110)
+    }
+  }
+
+  if (type.experienceScore || type.experienceScore === 0) {
+    CRSAScore = type.experienceScore + state.ageScore + state.educationScore + state.firstLangScore + state.secondLangScore
     if (state.status) {
       type.CRSAScore = Math.min(CRSAScore, 100)
     } else {
@@ -190,6 +212,7 @@ const mapStateToProps = (state) => {
     firstLangScore: state.firstLangScore,
     secondLang: state.secondLang,
     experience: state.experience,
+    experienceScore: state.experienceScore,
     married: state.married,
     spouseEducation: state.spouseEducation,
     spouseFirstLang: state.spouseFirstLang,

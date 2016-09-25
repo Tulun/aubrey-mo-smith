@@ -42,12 +42,12 @@ class CrsA extends Component {
       ],
       workExperience: [
         {value: null, name: 'Select...'},
-        {value: 'crs-work-experience-1', name: 'Less than 1 year'},
-        {value: 'crs-work-experience-2', name: '1 year'},
-        {value: 'crs-work-experience-3', name: '2 years'},
-        {value: 'crs-work-experience-4', name: '3 years'},
-        {value: 'crs-work-experience-5', name: '4 years'},
-        {value: 'crs-work-experience-6', name: '5 or more years'}
+        {value: null, name: 'Less than 1 year'},
+        {value: '1', name: '1 year'},
+        {value: '2', name: '2 years'},
+        {value: '3', name: '3 years'},
+        {value: '4', name: '4 years'},
+        {value: 'more5', name: '5 or more years'}
       ],
       age: 0,
       school: '',

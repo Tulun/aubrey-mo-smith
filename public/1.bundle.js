@@ -132,6 +132,7 @@ webpackJsonp([1],{
 	var DonutChart = _react2.default.createClass({
 	  displayName: 'DonutChart',
 
+<<<<<<< Updated upstream
 	  renderChart: function renderChart() {
 	    var chart = _c2.default.generate({
 	      data: {
@@ -167,6 +168,19 @@ webpackJsonp([1],{
 	  render: function render() {
 	    this.renderChart();
 	    return _react2.default.createElement('div', { className: 'row', id: 'chart' });
+=======
+	    var _this = _possibleConstructorReturn(this, (CrsA.__proto__ || Object.getPrototypeOf(CrsA)).call(this, props));
+
+	    _this.state = {
+	      schooling: [{ value: null, name: 'Select...' }, { value: 'crs-school-1', name: 'Less than secondary' }, { value: 'crs-school-2', name: 'Secondary diploma' }, { value: 'crs-school-3', name: 'One-year degree, diploma or certificate from a university, college,' + 'trade or technical school, or other institute' }, { value: 'crs-school-4', name: 'One-year degree, diploma or certificate from  a university, college, trade or technical school, or other institute' }, { value: 'crs-school-5', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'crs-school-6', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'crs-school-7', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)' }],
+	      firstLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-first-lang-1', name: 'Less than CLB 4' }, { value: 'crs-first-lang-2', name: 'CLB 4 or 5' }, { value: 'crs-first-lang-3', name: 'CLB 6' }, { value: 'crs-first-lang-4', name: 'CLB 7' }, { value: 'crs-first-lang-5', name: 'CLB 8' }, { value: 'crs-first-lang-6', name: 'CLB 9' }, { value: 'crs-first-lang-7', name: 'CLB 10 or more' }],
+	      secondLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-second-lang-1', name: 'Less than CLB 4' }, { value: 'crs-second-lang-2', name: 'CLB 5 or 6' }, { value: 'crs-second-lang-3', name: 'CLB 7 or 8' }, { value: 'crs-second-lang-4', name: 'CLB 9 or more' }],
+	      workExperience: [{ value: null, name: 'Select...' }, { value: 'crs-work-experience-1', name: 'Less than 1 year' }, { value: 'crs-work-experience-2', name: '1 year' }, { value: 'crs-work-experience-3', name: '2 years' }, { value: 'crs-work-experience-4', name: '3 years' }, { value: 'crs-work-experience-5', name: '4 years' }, { value: 'crs-work-experience-6', name: '5 or more years' }],
+	      age: 0,
+	      school: ''
+	    };
+	    return _this;
+>>>>>>> Stashed changes
 	  }
 	});
 
@@ -177,6 +191,7 @@ webpackJsonp([1],{
 /***/ 383:
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< Updated upstream
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/*!
 	 * jQuery JavaScript Library v3.1.1
 	 * https://jquery.com/
@@ -1823,6 +1838,105 @@ webpackJsonp([1],{
 	// and CommonJS for browser emulators (#13566)
 	if(!noGlobal){window.jQuery=window.$=jQuery;}return jQuery;});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(160)(module)))
+=======
+	      removeEvent('keypress', this.handleKeyPress.bind(this));
+	    }
+	  }, {
+	    key: 'handleKeyPress',
+	    value: function handleKeyPress(event) {
+	      if (event.keyCode === 13) {
+	        event.preventDefault();
+	      }
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(name, event) {
+	      console.log(name);
+	      var nextState = {};
+	      nextState[name] = event.target.value;
+	      this.setState({ age: event.target.value });
+	      console.log(this.state.age);
+	    }
+	  }, {
+	    key: 'checkEnter',
+	    value: function checkEnter(event) {
+	      if (event.key === 'Enter') {
+	        this.handleChange(event);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var createList = function createList(item, key) {
+	        return _react2.default.createElement(
+	          'option',
+	          { className: 'crs-option', key: key, value: item.value },
+	          item.name
+	        );
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'crs-a' },
+	        _react2.default.createElement(
+	          'form',
+	          { ref: 'crsaform', className: 'crs-a-form' },
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'crs-a-question' },
+	            'How old are you?'
+	          ),
+	          _react2.default.createElement('input', {
+	            type: 'number',
+	            value: this.state.age,
+	            onChange: this.handleChange.bind(this, 'age'),
+	            onBlur: this.handleChange.bind(this, 'age'),
+	            onKeyPress: this.checkEnter.bind(this, 'age') }),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'crs-a-question' },
+	            'What\'s your level of education?'
+	          ),
+	          _react2.default.createElement(
+	            'select',
+	            {
+	              className: 'crs-select' },
+	            this.state.schooling.map(createList)
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'crs-a-question' },
+	            'What\'s your first official language profiency?'
+	          ),
+	          _react2.default.createElement(
+	            'select',
+	            { className: 'crs-select' },
+	            this.state.firstLanguage.map(createList)
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'crs-a-question' },
+	            'What\'s your second official language profiency?'
+	          ),
+	          _react2.default.createElement(
+	            'select',
+	            { className: 'crs-select' },
+	            this.state.secondLanguage.map(createList)
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'crs-a-question' },
+	            'How much experience do you have working for a Canadian company?'
+	          ),
+	          _react2.default.createElement(
+	            'select',
+	            { className: 'crs-select' },
+	            this.state.workExperience.map(createList)
+	          )
+	        )
+	      );
+	    }
+	  }]);
+>>>>>>> Stashed changes
 
 /***/ },
 
