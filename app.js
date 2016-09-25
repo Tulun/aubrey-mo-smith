@@ -17,8 +17,6 @@ const baseTemplate = fs.readFileSync('./index.html')
 const template = _.template(baseTemplate)
 const ClientApp = require('./src/components/clientApp.jsx')
 const Routes = ClientApp.Routes
-const $ = require("jquery")
-
 
 const app = express()
 
@@ -31,8 +29,9 @@ app.use( (req,res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
+      console.log(store)
       const body = ReactDOMServer.renderToString(
-        React.createElement(Provider, {store}, 
+        React.createElement(Provider, {store: store}, 
           React.createElement(RouterContext, renderProps)
         )
       )

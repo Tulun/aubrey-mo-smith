@@ -10,14 +10,6 @@ class CrsA extends Component {
   constructor(props) {
     super(props)
 
-
-
-
-
-
-
-
-
     this.state = {
       schooling: [
         {value: null, name: 'Select...'},
