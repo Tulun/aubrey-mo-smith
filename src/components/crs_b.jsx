@@ -11,7 +11,7 @@ class CrsA extends Component {
     super(props)
 
     this.state = {
-      schooling: [
+      spouseSchooling: [
         {value: null, name: 'Select...'},
         {value: 'crs-school-1', name: 'Less than secondary'}, 
         {value: 'crs-school-2', name: 'Secondary diploma'},
@@ -24,50 +24,30 @@ class CrsA extends Component {
         {value: 'crs-school-8', name: "Master's degree, OR professional degree needed to practice in a licensed profession"},
         {value: 'crs-school-9', name: 'Doctoral level university degree (Ph.D.)'}
       ],
-      firstLanguage: [
+      spouseFirstLanguage: [
         {value: null, name: 'Select...'},
-        {value: 'crs-first-lang-1', name: 'Less than CLB 4'},
-        {value: 'crs-first-lang-2', name: 'CLB 4 or 5'},
-        {value: 'crs-first-lang-3', name: 'CLB 6'},
-        {value: 'crs-first-lang-4', name: 'CLB 7'},
-        {value: 'crs-first-lang-5', name: 'CLB 8'},
-        {value: 'crs-first-lang-6', name: 'CLB 9'},
-        {value: 'crs-first-lang-7', name: 'CLB 10 or more'}
-      ],
-      secondLanguage: [
-        {value: null, name: 'Select...'},
-        {value: 'crs-second-lang-1', name: 'Less than CLB 4'},
-        {value: 'crs-second-lang-2', name: 'CLB 5 or 6'},
-        {value: 'crs-second-lang-3', name: 'CLB 7 or 8'},
-        {value: 'crs-second-lang-4', name: 'CLB 9 or more'}
-      ],
-      workExperience: [
-        {value: null, name: 'Select...'},
-        {value: 'crs-work-experience-1', name: 'Less than 1 year'},
-        {value: 'crs-work-experience-2', name: '1 year'},
-        {value: 'crs-work-experience-3', name: '2 years'},
-        {value: 'crs-work-experience-4', name: '3 years'},
-        {value: 'crs-work-experience-5', name: '4 years'},
-        {value: 'crs-work-experience-6', name: '5 or more years'}
-      ],
-      age: 0,
-      school: ''
+        {value: 'crs-first-lang-1', name: 'CLB 4 or less'},
+        {value: 'crs-first-lang-2', name: 'CLB 5 or 6'},
+        {value: 'crs-first-lang-3', name: 'CLB 7 or 8'},
+        {value: 'crs-first-lang-4', name: 'CLB 9 or more'}
+      ]
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(this.refs.crsaform)
+    const node = ReactDOM.findDOMNode(this.refs.crsbform)
 
     const addEvent = node.addEventListener || node.attachEvent
 
-    addEvent('keypress', this.handleKeyPress.bind(this), false)
+    addEvent('keypress', this.handleKeyPress, false)
   }
 
   componentWillUnmount() {
     const removeEvent = node.removeEventListener || node.detachEvent
 
-    removeEvent('keypress', this.handleKeyPress.bind(this))
+    removeEvent('keypress', this.handleKeyPress)
   }
 
   handleKeyPress (event) {
@@ -108,34 +88,18 @@ class CrsA extends Component {
     }
     return (
       <div>
-        <div className='crs-a'>
-          <form ref='crsaform' className='crs-a-form'>
-            <p className='crs-a-question'>How old are you?</p>
-            <input
-             id='age'
-             type='number'
-             onBlur={this.handleChange}
-             onKeyPress={this.checkEnter.bind(this, 'age')} />
-             <p className='crs-a-question'>What's your level of education?</p>
-             <select id="education"
+        <div className='crs-b'>
+          <form ref='crsbform' className='crs-b-form'>
+             <p className='crs-b-question'>What's your spouse or common law's level of education?</p>
+             <select id="spouse-education"
               onChange={this.handleChange}
               className='crs-select'>
-              {this.state.schooling.map(createList)}
+              {this.state.spouseSchooling.map(createList)}
              </select>
-             <p className='crs-a-question'>What's your first official language profiency?</p>
-             <select id="first-lang"
+             <p className='crs-b-question'>What's your spouse or common law's first official language profiency?</p>
+             <select id="spouse-first-lang"
               onChange={this.handleChange} className='crs-select'>
-              {this.state.firstLanguage.map(createList)}
-             </select>
-             <p className='crs-a-question'>What's your second official language profiency?</p>
-             <select id="second-lang"
-              onChange={this.handleChange} className='crs-select'>
-              {this.state.secondLanguage.map(createList)}
-             </select>
-             <p className='crs-a-question'>How much experience do you have working for a Canadian company?</p>
-             <select id="experience"
-              onChange={this.handleChange}className='crs-select'>
-              {this.state.workExperience.map(createList)}
+              {this.state.spouseFirstLanguage.map(createList)}
              </select>
           </form>
         </div>

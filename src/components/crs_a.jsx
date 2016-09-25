@@ -115,7 +115,7 @@ class CrsA extends Component {
              id='age'
              type='number'
              onBlur={this.handleChange}
-             onKeyPress={this.checkEnter.bind(this, 'age')} />
+             onKeyPress={this.checkEnter.bind(this)} />
              <p className='crs-a-question'>What's your level of education?</p>
              <select id="education"
               onChange={this.handleChange}

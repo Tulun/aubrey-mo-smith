@@ -6,10 +6,39 @@ const CrsA = require('./crs_a')
 const DonutChart = require('./donut_chart')
 
 class Landing extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      married: [
+        {value: null, name: 'Select...'},
+        {value: true, name: 'Married or Common Law'}, 
+        {value: false, name: 'Single'}
+      ]
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(event) {
+    const value = event.target.value;
+    switch (event.target.id) {
+      case 'married':
+        this.props.handleMaritalStatus(value)
+        break
+    }
+  }
   render () {
+    var createList = (item, key) => {
+      return <option className='crs-option' key={key} value={item.value}>{item.name}</option>
+    }
     return (
       <div>
-        <h1 className='title'>Hello World</h1>
+        <p className='pre-question'> Are you married or common law, or single?</p>
+        <select
+         id='married' 
+         className='pre-question-select'
+         onChange={this.handleChange}>
+          {this.state.married.map(createList)}
+        </select>
       </div>
     )
   }
