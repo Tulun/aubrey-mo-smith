@@ -5,7 +5,7 @@ const {connector} = require('../reducers/store')
 const DonutChart = require('./donut_chart')
 
 class Landing extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -16,8 +16,10 @@ class Landing extends React.Component {
       ]
     }
     this.handleChange = this.handleChange.bind(this)
+    this.goToFormPage = this.goToFormPage.bind(this)
+
   }
-  handleChange(event) {
+  handleChange (event) {
     let value = event.target.value
     if (value === 'Select...') {
       value = null
@@ -35,6 +37,11 @@ class Landing extends React.Component {
       }
     }
   }
+  goToFormPage (event) {
+    debugger
+    browserHistory.push('crs/a')
+    event.preventDefault()
+  }
   render () {
     var createList = (item, key) => {
       return <option className='crs-option' key={key} value={item.value}>{item.name}</option>
@@ -42,12 +49,13 @@ class Landing extends React.Component {
     return (
       <div>
         <p className='pre-question'> Are you married or common law, or single?</p>
-        <select
-         id='married' 
-         className='pre-question-select'
-         onChange={this.handleChange}>
-          {this.state.married.map(createList)}
-        </select>
+          <select
+           id='married' 
+           className='pre-question-select'
+           onChange={this.handleChange}>
+            {this.state.married.map(createList)}
+          </select>
+          <input type="button" onClick={this.goToFormPage} value="Go To Assessment" />
       </div>
     )
   }

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import jQuery from 'jQuery';
-import c3 from 'c3';
+import React from 'react'
+const jQuery = require('jQuery')
+const c3 = require('c3')
+// const C3Chart = require("C3Chart")
 
 const {connector} = require('../reducers/store')
 
@@ -23,7 +24,7 @@ var DonutChart = React.createClass({
         title: "Your CRS Score",
         label: {
           format: function(value, ratio, id) {
-            return value;
+            return value
           }
         }
       },
@@ -31,8 +32,8 @@ var DonutChart = React.createClass({
         show: true,
         title: function(d) { return 'Score ' + d;},
         value: function(value, ratio, id) {
-          return value;
-          console.log(value);
+          return value
+          console.log(value)
         }
       }
     });
@@ -40,11 +41,11 @@ var DonutChart = React.createClass({
 
   // These two are to replace the renderChart in render to address a bug.
   componentDidMount: function () {
-    this.renderChart();
+    this.renderChart()
   },
 
   componentDidUpdate: function () {
-    this.renderChart();
+    this.renderChart()
   },
 
   render: function () {

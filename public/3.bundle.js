@@ -9,19 +9,11 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jQuery = __webpack_require__(383);
-
-	var _jQuery2 = _interopRequireDefault(_jQuery);
-
-	var _c = __webpack_require__(384);
-
-	var _c2 = _interopRequireDefault(_c);
-
-	var _d = __webpack_require__(385);
-
-	var _d2 = _interopRequireDefault(_d);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var jQuery = __webpack_require__(383);
+	var c3 = __webpack_require__(384);
+	// const C3Chart = require("C3Chart")
 
 	var _require = __webpack_require__(354);
 
@@ -32,9 +24,9 @@ webpackJsonp([3],{
 	  displayName: 'DonutChart',
 
 	  renderChart: function renderChart() {
-	    var chart = _c2.default.generate({
+	    var chart = c3.generate({
 	      data: {
-	        columns: [["CRS-A", this.props.ageScore, this.props.educationScore], ["CRS-B", 50, 100, 40], ["CRS-C", 100, 200], ['CRD-D', 50]],
+	        columns: [["CRS-A", this.props.CRSAScore], ["CRS-B"], ["CRS-C", this.props.CRSCScore], ['CRD-D']],
 	        type: 'donut'
 	        // onclick: function (d, i) { console.log("onclick", d, i); },
 	        // onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -60,12 +52,18 @@ webpackJsonp([3],{
 	      }
 	    });
 	  },
+
+	  // These two are to replace the renderChart in render to address a bug.
 	  componentDidMount: function componentDidMount() {
 	    this.renderChart();
 	  },
-	  render: function render() {
+
+	  componentDidUpdate: function componentDidUpdate() {
 	    this.renderChart();
-	    return _react2.default.createElement('div', { className: 'row', id: 'chart' });
+	  },
+
+	  render: function render() {
+	    return _react2.default.createElement('div', { id: 'chart' });
 	  }
 	});
 
@@ -1728,7 +1726,7 @@ webpackJsonp([3],{
 /***/ 384:
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};(function(window){'use strict';/*global define, module, exports, require */var c3={version:"0.4.11"};var c3_chart_fn,c3_chart_internal_fn,c3_chart_internal_axis_fn;function API(owner){this.owner=owner;}function inherit(base,derived){if(Object.create){derived.prototype=Object.create(base.prototype);}else{var f=function f(){};f.prototype=base.prototype;derived.prototype=new f();}derived.prototype.constructor=derived;return derived;}function Chart(config){var $$=this.internal=new ChartInternal(this);$$.loadConfig(config);$$.beforeInit(config);$$.init();$$.afterInit(config);// bind "this" to nested API
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {'use strict';var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};console.log(window);if(window===undefined){window=global;}(function(window){'use strict';/*global define, module, exports, require */var c3={version:"0.4.11"};var c3_chart_fn,c3_chart_internal_fn,c3_chart_internal_axis_fn;function API(owner){this.owner=owner;}function inherit(base,derived){if(Object.create){derived.prototype=Object.create(base.prototype);}else{var f=function f(){};f.prototype=base.prototype;derived.prototype=new f();}derived.prototype.constructor=derived;return derived;}function Chart(config){var $$=this.internal=new ChartInternal(this);$$.loadConfig(config);$$.beforeInit(config);$$.init();$$.afterInit(config);// bind "this" to nested API
 	(function bindThis(fn,target,argThis){Object.keys(fn).forEach(function(key){target[key]=fn[key].bind(argThis);if(Object.keys(fn[key]).length>0){bindThis(fn[key],target[key],argThis);}});})(c3_chart_fn,this,this);}function ChartInternal(api){var $$=this;$$.d3=window.d3?window.d3: true?__webpack_require__(385):undefined;$$.api=api;$$.config=$$.getDefaultConfig();$$.data={};$$.cache={};$$.axes={};}c3.generate=function(config){return new Chart(config);};c3.chart={fn:Chart.prototype,internal:{fn:ChartInternal.prototype,axis:{fn:Axis.prototype}}};c3_chart_fn=c3.chart.fn;c3_chart_internal_fn=c3.chart.internal.fn;c3_chart_internal_axis_fn=c3.chart.internal.axis.fn;c3_chart_internal_fn.beforeInit=function(){// can do something
 	};c3_chart_internal_fn.afterInit=function(){// can do something
 	};c3_chart_internal_fn.init=function(){var $$=this,config=$$.config;$$.initParams();if(config.data_url){$$.convertUrlToData(config.data_url,config.data_mimeType,config.data_headers,config.data_keys,$$.initWithData);}else if(config.data_json){$$.initWithData($$.convertJsonToData(config.data_json,config.data_keys));}else if(config.data_rows){$$.initWithData($$.convertRowsToData(config.data_rows));}else if(config.data_columns){$$.initWithData($$.convertColumnsToData(config.data_columns));}else{throw Error('url or json or rows or columns is required.');}};c3_chart_internal_fn.initParams=function(){var $$=this,d3=$$.d3,config=$$.config;// MEMO: clipId needs to be unique because it conflicts when multiple charts exist
@@ -2165,6 +2163,7 @@ webpackJsonp([3],{
 	if(this._string.charAt(this._currentIndex)=="+"){this._currentIndex++;}else if(this._string.charAt(this._currentIndex)=="-"){this._currentIndex++;expsign=-1;}// There must be an exponent.
 	if(this._currentIndex>=this._endIndex||this._string.charAt(this._currentIndex)<"0"||this._string.charAt(this._currentIndex)>"9")return undefined;while(this._currentIndex<this._endIndex&&this._string.charAt(this._currentIndex)>="0"&&this._string.charAt(this._currentIndex)<="9"){exponent*=10;exponent+=this._string.charAt(this._currentIndex)-"0";this._currentIndex++;}}var number=integer+decimal;number*=sign;if(exponent)number*=Math.pow(10,expsign*exponent);if(startIndex==this._currentIndex)return undefined;this._skipOptionalSpacesOrDelimiter();return number;};Source.prototype._parseArcFlag=function(){if(this._currentIndex>=this._endIndex)return undefined;var flag=false;var flagChar=this._string.charAt(this._currentIndex++);if(flagChar=="0")flag=false;else if(flagChar=="1")flag=true;else return undefined;this._skipOptionalSpacesOrDelimiter();return flag;};Source.prototype.parseSegment=function(){var lookahead=this._string[this._currentIndex];var command=this._pathSegTypeFromChar(lookahead);if(command==SVGPathSeg.PATHSEG_UNKNOWN){// Possibly an implicit command. Not allowed if this is the first command.
 	if(this._previousCommand==SVGPathSeg.PATHSEG_UNKNOWN)return null;command=this._nextCommandHelper(lookahead,this._previousCommand);if(command==SVGPathSeg.PATHSEG_UNKNOWN)return null;}else{this._currentIndex++;}this._previousCommand=command;switch(command){case SVGPathSeg.PATHSEG_MOVETO_REL:return new SVGPathSegMovetoRel(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_MOVETO_ABS:return new SVGPathSegMovetoAbs(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_REL:return new SVGPathSegLinetoRel(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_ABS:return new SVGPathSegLinetoAbs(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:return new SVGPathSegLinetoHorizontalRel(owningPathSegList,this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:return new SVGPathSegLinetoHorizontalAbs(owningPathSegList,this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:return new SVGPathSegLinetoVerticalRel(owningPathSegList,this._parseNumber());case SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:return new SVGPathSegLinetoVerticalAbs(owningPathSegList,this._parseNumber());case SVGPathSeg.PATHSEG_CLOSEPATH:this._skipOptionalSpaces();return new SVGPathSegClosePath(owningPathSegList);case SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:var points={x1:this._parseNumber(),y1:this._parseNumber(),x2:this._parseNumber(),y2:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoCubicRel(owningPathSegList,points.x,points.y,points.x1,points.y1,points.x2,points.y2);case SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:var points={x1:this._parseNumber(),y1:this._parseNumber(),x2:this._parseNumber(),y2:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoCubicAbs(owningPathSegList,points.x,points.y,points.x1,points.y1,points.x2,points.y2);case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:var points={x2:this._parseNumber(),y2:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoCubicSmoothRel(owningPathSegList,points.x,points.y,points.x2,points.y2);case SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:var points={x2:this._parseNumber(),y2:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoCubicSmoothAbs(owningPathSegList,points.x,points.y,points.x2,points.y2);case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:var points={x1:this._parseNumber(),y1:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoQuadraticRel(owningPathSegList,points.x,points.y,points.x1,points.y1);case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:var points={x1:this._parseNumber(),y1:this._parseNumber(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegCurvetoQuadraticAbs(owningPathSegList,points.x,points.y,points.x1,points.y1);case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:return new SVGPathSegCurvetoQuadraticSmoothRel(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:return new SVGPathSegCurvetoQuadraticSmoothAbs(owningPathSegList,this._parseNumber(),this._parseNumber());case SVGPathSeg.PATHSEG_ARC_REL:var points={x1:this._parseNumber(),y1:this._parseNumber(),arcAngle:this._parseNumber(),arcLarge:this._parseArcFlag(),arcSweep:this._parseArcFlag(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegArcRel(owningPathSegList,points.x,points.y,points.x1,points.y1,points.arcAngle,points.arcLarge,points.arcSweep);case SVGPathSeg.PATHSEG_ARC_ABS:var points={x1:this._parseNumber(),y1:this._parseNumber(),arcAngle:this._parseNumber(),arcLarge:this._parseArcFlag(),arcSweep:this._parseArcFlag(),x:this._parseNumber(),y:this._parseNumber()};return new SVGPathSegArcAbs(owningPathSegList,points.x,points.y,points.x1,points.y1,points.arcAngle,points.arcLarge,points.arcSweep);default:throw"Unknown path seg type.";}};var builder=new Builder();var source=new Source(string);if(!source.initialCommandIsMoveTo())return[];while(source.hasMoreData()){var pathSeg=source.parseSegment();if(!pathSeg)return[];builder.appendSegment(pathSeg);}return builder.pathSegList;};}})();/* jshint ignore:end */if(true){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(385)], __WEBPACK_AMD_DEFINE_RESULT__ = function(){return c3;}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if('undefined'!==typeof exports&&'undefined'!==typeof module){module.exports=c3;}else{window.c3=c3;}})(window);
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 
@@ -2215,9 +2214,9 @@ webpackJsonp([3],{
 
 	    _this.state = {
 	      schooling: [{ value: null, name: 'Select...' }, { value: 'lessHighSchool', name: 'Less than secondary' }, { value: 'highSchool', name: 'Secondary diploma' }, { value: 'oneYearPS', name: 'One-year degree, diploma or certificate from a university, college,' + 'trade or technical school, or other institute' }, { value: 'twoYearPS', name: 'Two-year program at a university, college, trade or technical school, or other institute' }, { value: 'bachelor', name: "Bachelor's degree OR  a three or more year program at a university, college, trade or technical school,or other institute" }, { value: 'bachelorPG', name: 'Two or more certificates, diplomas, or degrees. One must be for a program of three or more years' }, { value: 'masterProfBatch', name: "Master's degree, OR professional degree needed to practice in a licensed profession" }, { value: 'phd', name: 'Doctoral level university degree (Ph.D.)' }],
-	      firstLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-first-lang-1', name: 'Less than CLB 4' }, { value: 'crs-first-lang-2', name: 'CLB 4 or 5' }, { value: 'crs-first-lang-3', name: 'CLB 6' }, { value: 'crs-first-lang-4', name: 'CLB 7' }, { value: 'crs-first-lang-5', name: 'CLB 8' }, { value: 'crs-first-lang-6', name: 'CLB 9' }, { value: 'crs-first-lang-7', name: 'CLB 10 or more' }],
-	      secondLanguage: [{ value: null, name: 'Select...' }, { value: 'crs-second-lang-1', name: 'Less than CLB 4' }, { value: 'crs-second-lang-2', name: 'CLB 5 or 6' }, { value: 'crs-second-lang-3', name: 'CLB 7 or 8' }, { value: 'crs-second-lang-4', name: 'CLB 9 or more' }],
-	      workExperience: [{ value: null, name: 'Select...' }, { value: 'crs-work-experience-1', name: 'Less than 1 year' }, { value: 'crs-work-experience-2', name: '1 year' }, { value: 'crs-work-experience-3', name: '2 years' }, { value: 'crs-work-experience-4', name: '3 years' }, { value: 'crs-work-experience-5', name: '4 years' }, { value: 'crs-work-experience-6', name: '5 or more years' }],
+	      firstLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than CLB 4' }, { value: '4or5', name: 'CLB 4 or 5' }, { value: '6', name: 'CLB 6' }, { value: '7', name: 'CLB 7' }, { value: '8', name: 'CLB 8' }, { value: '9', name: 'CLB 9' }, { value: 'more10', name: 'CLB 10 or more' }],
+	      secondLanguage: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than CLB 4' }, { value: '5or6', name: 'CLB 5 or 6' }, { value: '7or8', name: 'CLB 7 or 8' }, { value: 'more9', name: 'CLB 9 or more' }],
+	      workExperience: [{ value: null, name: 'Select...' }, { value: null, name: 'Less than 1 year' }, { value: '1', name: '1 year' }, { value: '2', name: '2 years' }, { value: '3', name: '3 years' }, { value: '4', name: '4 years' }, { value: 'more5', name: '5 or more years' }],
 	      age: 0,
 	      school: ''
 	    };
@@ -2252,22 +2251,43 @@ webpackJsonp([3],{
 	    key: 'handleChange',
 	    value: function handleChange(event) {
 	      var value = event.target.value;
-	      switch (event.target.id) {
-	        case 'age':
-	          this.props.handleAge(value);
-	          break;
-	        case 'education':
-	          this.props.handleEducation(value);
-	          break;
-	        case 'first-lang':
-	          this.props.handleFirstLang(value);
-	          break;
-	        case 'second-lang':
-	          this.props.handleSecondLang(value);
-	          break;
-	        case 'experience':
-	          this.props.handleExperience(value);
-	          break;
+	      if (value === 'Select...') {
+	        value = null;
+	        switch (event.target.id) {
+	          case 'age':
+	            this.props.handleAge(value);
+	            break;
+	          case 'education':
+	            this.props.handleEducation(value);
+	            break;
+	          case 'first-lang':
+	            this.props.handleFirstLang(value);
+	            break;
+	          case 'second-lang':
+	            this.props.handleSecondLang(value);
+	            break;
+	          case 'experience':
+	            this.props.handleExperience(value);
+	            break;
+	        }
+	      } else {
+	        switch (event.target.id) {
+	          case 'age':
+	            this.props.handleAge(value);
+	            break;
+	          case 'education':
+	            this.props.handleEducation(value);
+	            break;
+	          case 'first-lang':
+	            this.props.handleFirstLang(value);
+	            break;
+	          case 'second-lang':
+	            this.props.handleSecondLang(value);
+	            break;
+	          case 'experience':
+	            this.props.handleExperience(value);
+	            break;
+	        }
 	      }
 	    }
 	  }, {
